@@ -1,0 +1,1325 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><title>CCL CSR Monitor v17</title><style>:root{  --coal:#1a1a2e;--coal-mid:#2d2d44;--coal-light:#3d3d5c;  --accent:#e8a020;--accent-light:#fcecd5;--accent-dark:#b87a10;  --green:#2d7d46;--green-light:#e6f4eb;  --red:#c0392b;--red-light:#fdecea;  --blue:#1a5fa8;--blue-light:#e6f0fb;  --amber:#d4820a;--amber-light:#fef3e0;  --purple:#6b35a8;--purple-light:#f0eafa;  --teal:#0d7a6b;--teal-light:#e3f4f2;  --border:#e5e7eb;--text:#111827;--muted:#6b7280;  --bg:#f8f9fb;--white:#ffffff;  --shadow:0 1px 3px rgba(0,0,0,0.08);  --shadow-md:0 4px 12px rgba(0,0,0,0.10);  --r:8px;--rl:12px;  --track-pipe:#1a5fa8;  --track-pipe-bg:#e6f0fb;  --track-efile:#6b35a8;  --track-efile-bg:#f0eafa;  --track-mou:#0d7a6b;  --track-mou-bg:#e3f4f2;  --track-active:#15803d;  --track-active-bg:#dcfce7;  --track-area1:#1a5fa8;  --track-area1-bg:#e6f0fb;  --track-area2:#6b35a8;  --track-area2-bg:#f0eafa;  --track-area3:#b87a10;  --track-area3-bg:#fef3e0;  --track-area4:#15803d;  --track-area4-bg:#dcfce7;  --track-area5:#374151;  --track-area5-bg:#f3f4f6;}*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}html{-webkit-text-size-adjust:100%}body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}#login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--coal);padding:20px}.login-box{background:var(--white);border-radius:var(--rl);padding:36px 28px;width:100%;max-width:360px;box-shadow:0 24px 60px rgba(0,0,0,0.35)}.login-logo{text-align:center;margin-bottom:24px}.login-logo .brand{font-size:20px;font-weight:700;color:var(--coal)}.login-logo .brand span{color:var(--accent)}.login-logo p{font-size:12px;color:var(--muted);margin-top:5px}.login-box label{display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px}.login-box select,.login-box input[type=password]{width:100%;padding:11px 12px;border:1px solid var(--border);border-radius:var(--r);font-size:15px;color:var(--text);margin-bottom:14px;-webkit-appearance:none;background:var(--white)}.login-box select:focus,.login-box input:focus{outline:2px solid var(--accent);border-color:transparent}.btn-login{width:100%;padding:13px;background:var(--coal);color:#fff;border:none;border-radius:var(--r);font-size:15px;font-weight:600;cursor:pointer;margin-top:4px}.btn-login:active{background:var(--coal-mid)}#login-error{color:var(--red);font-size:12px;text-align:center;margin-top:8px;min-height:18px}#app{display:none}.sync-bar{background:#1e2a40;color:rgba(255,255,255,0.6);font-size:11px;padding:5px 10px;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;text-align:center}.sync-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;flex-shrink:0}.sync-dot.err{background:var(--red)}.sync-dot.syncing{background:var(--accent);animation:pulse 1s infinite}@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}.topnav{background:var(--coal);color:#fff;display:flex;align-items:center;height:50px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.3)}.nav-brand{padding:0 14px;font-size:13px;font-weight:700;white-space:nowrap;border-right:1px solid var(--coal-light);height:100%;display:flex;align-items:center;gap:5px;flex-shrink:0}.nav-brand span{color:var(--accent)}.nav-links{display:flex;overflow-x:auto;height:100%;scrollbar-width:none;flex:1;-webkit-overflow-scrolling:touch}.nav-links::-webkit-scrollbar{display:none}.nav-link{padding:0 12px;font-size:12px;font-weight:500;cursor:pointer;height:100%;display:flex;align-items:center;gap:5px;white-space:nowrap;border-bottom:2px solid transparent;color:rgba(255,255,255,0.65);flex-shrink:0}.nav-link:active,.nav-link:hover{color:#fff;background:var(--coal-mid)}.nav-link.active{color:#fff;border-bottom-color:var(--accent)}.nav-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}.nav-count{background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.8);font-size:10px;padding:1px 5px;border-radius:8px}.nav-user{padding:0 12px;margin-left:auto;border-left:1px solid var(--coal-light);height:100%;display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,0.7);flex-shrink:0}.uname{display:none}@media(min-width:600px){.uname{display:inline}}.btn-logout{background:transparent;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.6);padding:4px 10px;border-radius:var(--r);font-size:11px;cursor:pointer}.btn-logout:active{background:rgba(255,255,255,0.1);color:#fff}.page{display:none;padding:14px;max-width:1320px;margin:0 auto}.page.active{display:block}@media(min-width:768px){.page{padding:24px}}.page-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:16px;flex-wrap:wrap}.page-header h1{font-size:18px;font-weight:700;color:var(--coal)}@media(min-width:600px){.page-header h1{font-size:20px}}.page-header p{font-size:12px;color:var(--muted);margin-top:3px}.page-header-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.stats-row{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:14px}@media(min-width:500px){.stats-row{grid-template-columns:repeat(3,1fr)}}@media(min-width:900px){.stats-row{grid-template-columns:repeat(auto-fit,minmax(120px,1fr))}}.stat{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;box-shadow:var(--shadow)}.stat .lbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:4px}.stat .val{font-size:22px;font-weight:700;color:var(--coal);line-height:1}.stat .sub{font-size:11px;color:var(--muted);margin-top:3px}.stat.acc{border-left:3px solid var(--accent)}.stat.grn{border-left:3px solid var(--green)}.stat.red{border-left:3px solid var(--red)}.stat.blu{border-left:3px solid var(--blue)}.stat.prp{border-left:3px solid var(--purple)}.stat.tel{border-left:3px solid var(--teal)}.track-header{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--border)}.track-pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:0.02em}.track-pipe .track-pill{background:var(--track-pipe-bg);color:var(--track-pipe)}.track-efile .track-pill{background:var(--track-efile-bg);color:var(--track-efile)}.track-mou .track-pill{background:var(--track-mou-bg);color:var(--track-mou)}.track-active .track-pill{background:var(--track-active-bg);color:var(--track-active)}.track-pipe{border-top:3px solid var(--track-pipe)}.track-efile{border-top:3px solid var(--track-efile)}.track-mou{border-top:3px solid var(--track-mou)}.track-active{border-top:3px solid var(--track-active)}.section{background:var(--white);border:1px solid var(--border);border-radius:var(--rl);box-shadow:var(--shadow);margin-bottom:14px;overflow:hidden}.sec-hdr{padding:10px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}.sec-title{font-size:13px;font-weight:700;color:var(--coal)}.sec-sub{font-size:11px;color:var(--muted)}.sec-tools{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{width:100%;border-collapse:collapse;font-size:12px}th{background:#f9fafb;font-weight:600;font-size:11px;color:var(--muted);text-align:left;padding:8px 10px;border-bottom:1px solid var(--border);white-space:nowrap}td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:middle}tr:last-child td{border-bottom:none}tr:hover td{background:#f8f9ff}tr.on-hold td{opacity:.6}td.pname{font-weight:600;line-height:1.4;min-width:130px}td.agt{color:var(--muted);font-size:11px}td.cost{text-align:right;font-size:11px;white-space:nowrap}.text-xs{font-size:11px}.badge{display:inline-flex;align-items:center;padding:2px 7px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}.pp1{background:#dbeafe;color:#1d4ed8}.pp2{background:#e0e7ff;color:#3730a3}.pp3{background:#fef9e0;color:#92400e}.pp4{background:#fef3e0;color:#d4820a}.pp5{background:#fde8c8;color:#b45309}.pp6{background:#d1fae5;color:#065f46}.ep1{background:#ede9fe;color:#5b21b6}.ep2{background:#ddd6fe;color:#4c1d95}.ep3{background:#fdecea;color:#c0392b}.ep4{background:#fee2e2;color:#b91c1c}.ep5{background:#dff5e8;color:#1a6634}.ep6{background:#fef3c7;color:#92400e}.ep7{background:#fde68a;color:#78350f}.ep8{background:#fecaca;color:#991b1b}.ep9{background:#e9d5ff;color:#6b21a8}.ep10{background:#ddd6fe;color:#4c1d95}.ep11{background:#c7d2fe;color:#3730a3}.ep12{background:#bbf7d0;color:#047857}.ep13{background:#86efac;color:#14532d}.mp1{background:#ccfbf1;color:#0d6a5e}.mp2{background:#a7f3d0;color:#065f46}.mp3{background:#6ee7b7;color:#064e3b}.mp4{background:#059669;color:#ffffff}.bhold{background:#f3f4f6;color:#6b7280}.stale{background:#fef3e0;color:#b45309;border:1px solid #f5d99a}.av{width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;vertical-align:middle}.PP{background:#dbeafe;color:#1d4ed8}.CK{background:#ede9fe;color:#6d28d9}.JAB{background:#d1fae5;color:#065f46}.SSH{background:#fee2e2;color:#b91c1c}.UK{background:#fef3c7;color:#92400e}.PT{background:#fce7f3;color:#9d174d}.RM{background:#dcfce7;color:#15803d}.GM{background:#fcecd5;color:#92400e}.NA{background:#f3f4f6;color:#6b7280}.btn{height:34px;padding:0 12px;border-radius:var(--r);font-size:12px;font-weight:600;cursor:pointer;border:1px solid transparent;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;-webkit-appearance:none}.btn-acc{background:var(--accent);color:var(--coal);border-color:var(--accent-dark)}.btn-acc:active{background:var(--accent-dark);color:#fff}.btn-ghost{background:transparent;color:var(--muted);border-color:var(--border)}.btn-ghost:active{background:#f3f4f6}.btn-del{background:var(--red-light);color:var(--red);border-color:#f5c6c2}.btn-del:active{background:var(--red);color:#fff}.btn-sm{height:28px;padding:0 8px;font-size:11px}.btn-pipe{background:var(--track-pipe-bg);color:var(--track-pipe);border-color:#b3cfee}.btn-efile{background:var(--track-efile-bg);color:var(--track-efile);border-color:#c4a8e0}.btn-mou{background:var(--track-mou-bg);color:var(--track-mou);border-color:#8ecfc8}.btn-active{background:var(--track-active-bg);color:var(--track-active);border-color:#86efac}.alerts{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}.alert{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:var(--r);border:1px solid}.alert-red{background:var(--red-light);border-color:#f5c6c2}.alert-amber{background:var(--amber-light);border-color:#f5d99a}.alert-blue{background:var(--blue-light);border-color:#b3cfee}.alert-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:4px}.alert-red .alert-dot{background:var(--red)}.alert-amber .alert-dot{background:var(--amber)}.alert-blue .alert-dot{background:var(--blue)}.alert-txt{font-size:12px;line-height:1.5}.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;align-items:flex-end;justify-content:center}@media(min-width:600px){.modal-bg{align-items:center;padding:16px}}.modal-bg.open{display:flex}.modal{background:var(--white);border-radius:var(--rl) var(--rl) 0 0;width:100%;max-height:90vh;overflow-y:auto;padding:16px 16px 36px;-webkit-overflow-scrolling:touch}@media(min-width:600px){.modal{border-radius:var(--rl);max-width:560px;padding:24px}}.modal-handle{width:36px;height:4px;background:#d1d5db;border-radius:2px;margin:0 auto 14px;display:block}@media(min-width:600px){.modal-handle{display:none}}.modal h2{font-size:15px;font-weight:700;color:var(--coal);margin-bottom:6px}.modal-track-tag{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:12px;font-size:11px;font-weight:700;margin-bottom:14px}.modal-track-pipe{background:var(--track-pipe-bg);color:var(--track-pipe)}.modal-track-efile{background:var(--track-efile-bg);color:var(--track-efile)}.modal-track-mou{background:var(--track-mou-bg);color:var(--track-mou)}.modal-track-active{background:var(--track-active-bg);color:var(--track-active)}.fg{margin-bottom:11px}.fg label{display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px}.fg input,.fg select,.fg textarea{width:100%;padding:10px;border:1px solid var(--border);border-radius:var(--r);font-size:14px;color:var(--text);background:var(--white);font-family:inherit;-webkit-appearance:none}.fg input:focus,.fg select:focus,.fg textarea:focus{outline:2px solid var(--accent);border-color:transparent}.fg textarea{resize:vertical;min-height:70px}.fg input[disabled],.fg select[disabled],.fg textarea[disabled]{background:#f3f4f6;color:var(--muted)}.frow{display:grid;grid-template-columns:1fr;gap:0}@media(min-width:480px){.frow{grid-template-columns:1fr 1fr;gap:10px}}.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:16px;padding-top:14px;border-top:1px solid var(--border);flex-wrap:wrap}.ro-notice{background:var(--amber-light);border:1px solid #f5d99a;border-radius:var(--r);padding:8px 12px;font-size:12px;color:#7a4a00;margin-bottom:12px}.toggle-row{display:flex;align-items:center;gap:8px;font-size:13px}.toggle{position:relative;width:40px;height:22px;cursor:pointer;flex-shrink:0}.toggle input{opacity:0;width:0;height:0;position:absolute}.tslider{position:absolute;inset:0;background:#d1d5db;border-radius:11px;transition:0.2s}.tslider:before{content:'';position:absolute;width:18px;height:18px;left:2px;top:2px;background:#fff;border-radius:50%;transition:0.2s;box-shadow:0 1px 2px rgba(0,0,0,0.2)}.toggle input:checked+.tslider{background:var(--accent)}.toggle input:checked+.tslider:before{transform:translateX(18px)}.pbar{height:6px;border-radius:3px;overflow:hidden;background:var(--border);width:80px}.pbar-fill{height:100%;border-radius:3px}.stage-flow{display:flex;align-items:center;gap:0;margin:8px 0 4px;overflow-x:auto;scrollbar-width:none}.stage-flow::-webkit-scrollbar{display:none}.sf-step{flex-shrink:0;padding:4px 8px;font-size:10px;font-weight:600;border-radius:4px;opacity:0.4;white-space:nowrap}.sf-step.done{opacity:1}.sf-step.current{opacity:1;box-shadow:0 0 0 2px}.sf-arrow{flex-shrink:0;color:#d1d5db;font-size:10px;padding:0 2px}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--coal);color:#fff;padding:10px 20px;border-radius:var(--r);font-size:13px;font-weight:500;z-index:300;opacity:0;transition:all 0.25s;box-shadow:var(--shadow-md);max-width:88vw;text-align:center}.toast.show{transform:translateX(-50%) translateY(0);opacity:1}.toast.err{background:var(--red)}.saving-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.25);z-index:250;align-items:center;justify-content:center;pointer-events:all;}.saving-overlay.show{display:flex}.saving-box{background:var(--white);border-radius:var(--rl);padding:20px 30px;font-size:14px;font-weight:600;color:var(--coal);box-shadow:var(--shadow-md);display:flex;align-items:center;gap:12px}.spinner{width:18px;height:18px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite;flex-shrink:0}@keyframes spin{to{transform:rotate(360deg)}}.empty-state{padding:40px 20px;text-align:center;color:var(--muted)}.empty-state .es-icon{font-size:32px;margin-bottom:8px;opacity:0.4}.empty-state p{font-size:13px}.rep-table th,.rep-table td{padding:9px 11px;font-size:12px;vertical-align:middle}.rep-table thead th{background:#f1f5f9;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;position:sticky;top:0;z-index:2}.rep-table tr:hover td{background:#f8f9ff}.rep-cb{width:18px;height:18px;cursor:pointer;accent-color:var(--coal);flex-shrink:0}.rep-cb:disabled{cursor:not-allowed;opacity:0.4}.rep-flag{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700}.rep-flag-hr {background:#dbeafe;color:#1d4ed8}.rep-flag-fin{background:#fef3c7;color:#92400e}.rep-flag-cmd{background:#fce7f3;color:#9d174d}.rep-saving{opacity:0.5;pointer-events:none}.track-tag{display:inline-flex;align-items:center;gap:4px;padding:2px 7px;border-radius:12px;font-size:10px;font-weight:700}.track-tag-pipeline{background:var(--track-pipe-bg);color:var(--track-pipe)}.track-tag-efile   {background:var(--track-efile-bg);color:var(--track-efile)}.track-tag-mou     {background:var(--track-mou-bg);color:var(--track-mou)}.track-tag-active  {background:var(--track-active-bg);color:var(--track-active)}.rep-filter-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:10px 14px;border-bottom:1px solid var(--border);background:#fafafa}.rep-filter-bar label{font-size:11px;font-weight:600;color:var(--muted)}.rep-filter-bar select,.rep-filter-bar input{height:30px;padding:0 8px;border:1px solid var(--border);border-radius:var(--r);font-size:12px;color:var(--text);background:var(--white)}.rep-count-badge{background:var(--coal);color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;margin-left:4px}.vip-pill{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:12px;font-size:10px;font-weight:700;background:#fcecd5;color:#92400e;white-space:nowrap}.band-chip{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:12px;font-size:10px;font-weight:700;background:#e0e7ff;color:#3730a3;margin-bottom:6px}
+/* Reporting Monitor — fixed layout, fills the section width, no horizontal scrollbar */
+.rep-table-wrap{overflow-x:visible;width:100%}
+.rep-table-wrap table.rep-table{table-layout:fixed;width:100%}
+.rep-table-wrap .rep-table th,.rep-table-wrap .rep-table td{white-space:normal;word-break:break-word;overflow-wrap:break-word}
+.rep-table .rc-sno{width:5%}
+.rep-table .rc-project{width:24%}
+.rep-table .rc-value{width:9%}
+.rep-table .rc-officer{width:15%}
+.rep-table .rc-track{width:11%}
+.rep-table .rc-vip{width:11%}
+.rep-table .rc-flag{width:6.25%;text-align:center}
+@media(max-width:680px){
+  .rep-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .rep-table-wrap table.rep-table{table-layout:auto;min-width:760px}
+}</style></head><body><div id="login-screen">  <div class="login-box">    <div class="login-logo">      <div class="brand">&#9632; <span>CCL</span> CSR Monitor</div>      <p>Central Coalfields Limited &middot; CSR Division &middot; FY 2026-27</p>    </div>    <label>Location</label>    <select id="login-loc" onchange="onLoginLoc()">      <option value="">&#8212; Select location &#8212;</option>      <option value="hq">HQ &mdash; Ranchi</option>      <option value="area">Area Office</option>    </select>    <label>Officer / Area</label>    <select id="login-code" onchange="onLoginOfficer()" disabled>      <option value="">&#8212; Select location first &#8212;</option>    </select>    <label>PIN</label>    <input type="password" id="login-pin" placeholder="Enter your PIN" disabled           onkeydown="if(event.key==='Enter')doLogin()">    <button class="btn-login" onclick="doLogin()">Sign in &rarr;</button>    <div id="login-error"></div>  </div></div><div id="app">  <div class="sync-bar" id="sync-bar">    <span class="sync-dot syncing" id="sync-dot"></span>    <span id="sync-txt">Connecting&hellip;</span>  </div>  <nav class="topnav">    <div class="nav-brand">&#9632; <span>CCL</span> CSR</div>    <div class="nav-links" id="nav-links"></div>    <div class="nav-user" id="nav-user"></div>  </nav>  <div id="pages"></div></div><div class="saving-overlay" id="saving-overlay">  <div class="saving-box">    <div class="spinner"></div>    <span id="saving-msg">Saving&hellip;</span>  </div></div><div class="modal-bg" id="modal-bg" onclick="closeMBg(event)">  <div class="modal" id="modal-content"></div></div><div class="toast" id="toast"></div><script>
+/* ══════════════════════════════════════════
+   CONFIG & GLOBALS
+   ══════════════════════════════════════════ */
+const SB_URL  = 'https://ctanxvdosuglkgmuheag.supabase.co';
+const SB_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN0YW54dmRvc3VnbGtnbXVoZWFnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI4NDkyOTQsImV4cCI6MjA5ODQyNTI5NH0._QwaQOXD9J1w134i8UB0moy1L-QnVkNTReDPzPb7yvc';
+const TOKEN_KEY    = 'ccl_tok';
+const REFRESH_SEC  = 60;
+const TOKEN_TTL_MS = 8 * 60 * 60 * 1000;
+
+let currentUser = null, sessionToken = null, currentPage = 'summary';
+let currentIsArea = false;
+let DB = { pipeline: [], efiles: [], mous: [], active: [], areaProjects: [], reportFlags: {} };
+let refreshTimer = null, countdown = REFRESH_SEC, _missingTables = [];
+let _migrationStatus = 'unknown'; // 'unknown' | 'pending' | 'done'
+window._isTransferring = false;
+window._isDeleting = false;
+
+/* ══════════════════════════════════════════
+   CONSTANTS
+   ══════════════════════════════════════════ */
+const HQ_USERS = [
+  { code:'ADMIN', name:'Admin',                    pin:'00000000' },
+  { code:'CMD',   name:'CMD-CCL',                  pin:'00000000' },
+  { code:'DHR',   name:'Director (HR)',             pin:'00000000' },
+  { code:'GM',    name:'GM (CSR)',                 pin:'00000000' },
+  { code:'PP',    name:'PP — Pooja Prasad',        pin:'11111111' },
+  { code:'CK',    name:'CK — Chandan Kumar',       pin:'22222222' },
+  { code:'JAB',   name:'JAB — John A Bodra',       pin:'33333333' },
+  { code:'SSH',   name:'SSH — Shweta S Hansda',    pin:'44444444' },
+  { code:'UK',    name:'UK — Uphar Kaushal',       pin:'55555555' },
+  { code:'PT',    name:'PT — Priyanka Thakuri',    pin:'66666666' },
+  { code:'RM',    name:'RM — Rahul Mishra',        pin:'77777777' },
+];
+const AREA_USERS = [
+  { code:'AC',    name:'Amrapali Chandragupta', pin:'99990000' },
+  { code:'ARG',   name:'Argada',             pin:'99990001' },
+  { code:'BK',    name:'Bokaro & Kargali',  pin:'99990002' },
+  { code:'BSAYAL',name:'Barkasayal',        pin:'99990003' },
+  { code:'CRS',   name:'CRS Barkakana',     pin:'99990004' },
+  { code:'DHORI', name:'Dhori',             pin:'99990005' },
+  { code:'GRD',   name:'Giridih',           pin:'99990006' },
+  { code:'HZB',   name:'Hazaribagh',        pin:'99990007' },
+  { code:'KTA',   name:'Kathara',           pin:'99990008' },
+  { code:'KUJU',  name:'Kuju',              pin:'99990009' },
+  { code:'MS',    name:'Magadh Sanghmitra', pin:'99990010' },
+  { code:'NK',    name:'North Karanpura',   pin:'99990011' },
+  { code:'PPR',   name:'Piparwar',          pin:'99990012' },
+  { code:'RJH',   name:'Rajhara',           pin:'99990013' },
+  { code:'RJP',   name:'Rajrappa',          pin:'99990014' },
+];
+
+const LOCAL_PINS = {};
+[...HQ_USERS, ...AREA_USERS].forEach(u => { LOCAL_PINS[u.code] = u.pin; });
+
+const OFFICERS = [
+  {code:'PP', name:'Pooja Prasad'}, {code:'CK', name:'Chandan Kumar'}, {code:'JAB',name:'John A Bodra'}, {code:'SSH',name:'Shweta S Hansda'},
+  {code:'UK', name:'Uphar Kaushal'}, {code:'PT', name:'Priyanka Thakuri'}, {code:'RM', name:'Rahul Mishra'}
+];
+const AREAS = AREA_USERS.map(u => ({ code:u.code, name:u.name }));
+
+const DOT = { PP:'#60a5fa',CK:'#a78bfa',JAB:'#34d399',SSH:'#f87171', UK:'#fbbf24',PT:'#f9a8d4',RM:'#4ade80',GM:'#e8a020',AC:'#86efac' };
+
+const AVATAR_PALETTE = [
+  {bg:'#dbeafe',fg:'#1d4ed8'},{bg:'#ede9fe',fg:'#6d28d9'},{bg:'#d1fae5',fg:'#065f46'},
+  {bg:'#fee2e2',fg:'#b91c1c'},{bg:'#fef3c7',fg:'#92400e'},{bg:'#fce7f3',fg:'#9d174d'},
+  {bg:'#dcfce7',fg:'#15803d'},{bg:'#cffafe',fg:'#0e7490'},{bg:'#fae8ff',fg:'#86198f'},
+  {bg:'#e0e7ff',fg:'#4338ca'},{bg:'#fef9c3',fg:'#854d0e'},{bg:'#ffe4e6',fg:'#9f1239'},
+  {bg:'#d9f99d',fg:'#3f6212'},{bg:'#bae6fd',fg:'#075985'}
+];
+function paletteFor(code){
+  let h = 0; for(let i=0;i<code.length;i++) h = (h*31 + code.charCodeAt(i)) >>> 0;
+  return AVATAR_PALETTE[h % AVATAR_PALETTE.length];
+}
+function dotColor(code){ return DOT[code] || paletteFor(code||'').fg; }
+
+/* ══════════════════════════════════════════
+   TRACK DEFINITIONS
+   Pipeline now has 6 stages (Technical Scrutiny added at position 2).
+   E-File stages are cost-dependent — see getEfileStages() below.
+   ══════════════════════════════════════════ */
+const TRACKS = {
+  pipeline: {
+    id: 'pipeline', label: 'Pipeline Proposals', icon: '📋',
+    color: 'var(--track-pipe)', bg: 'var(--track-pipe-bg)', table: 'pipeline_projects',
+    stages: [
+      { id:1, label:'Allocation',          badge:'pp1' },
+      { id:2, label:'Technical Scrutiny',  badge:'pp2' },
+      { id:3, label:'Review Prep',         badge:'pp3' },
+      { id:4, label:'BBL Prep',            badge:'pp4' },
+      { id:5, label:'BBL Submitted',       badge:'pp5' },
+      { id:6, label:'BBL Signed',          badge:'pp6' }
+    ]
+  },
+  efile: {
+    id: 'efile', label: 'E-Files', icon: '🗂️',
+    color: 'var(--track-efile)', bg: 'var(--track-efile-bg)', table: 'efile_projects',
+    stages: [] /* cost-dependent — resolved via getEfileStages() */
+  },
+  mou: {
+    id: 'mou', label: 'MoU', icon: '📝',
+    color: 'var(--track-mou)', bg: 'var(--track-mou-bg)', table: 'mou_projects',
+    stages: [
+      { id:1, label:'Draft MoU',             badge:'mp1' },
+      { id:2, label:'Draft MoU Checked',     badge:'mp2' },
+      { id:3, label:'MoU shared with IA',    badge:'mp3' },
+      { id:4, label:'MoU Signed',            badge:'mp4' }
+    ]
+  },
+  active: {
+    id: 'active', label: 'Active Projects', icon: '🏗️',
+    color: 'var(--track-active)', bg: 'var(--track-active-bg)', table: 'active_projects',
+    stages: []
+  }
+};
+const TRACK_SEQUENCE  = { pipeline:'efile', efile:'mou', mou:'active', active:null };
+/* ══════════════════════════════════════════
+   AREA 5-TRACK STAGE DEFINITIONS
+   ══════════════════════════════════════════ */
+const AREA_TRACKS = [
+  { id:1, icon:'📋', label:'Pipeline Projects',       color:'var(--track-area1)',  bg:'var(--track-area1-bg)',
+    stages:['Not Taken Up','Estimate Processed','Estimate Approved'] },
+  { id:2, icon:'📄', label:'Tendered Activities',     color:'var(--track-area2)',  bg:'var(--track-area2-bg)',
+    stages:['Tendered','Re-Tendered','Tender Opened','TCR Under Process','TCR Approved'] },
+  { id:3, icon:'🏆', label:'Activities to be Awarded',color:'var(--track-area3)',  bg:'var(--track-area3-bg)',
+    stages:['Pending BC Submission','Submitted for BC','BC Received','Work Awarded'] },
+  { id:4, icon:'🏗️', label:'Active Projects',          color:'var(--track-area4)',  bg:'var(--track-area4-bg)',
+    stages:['Work in Progress','Work Halted','Site Issues','Part Bills','Final Bill Paid','Work Completed'] },
+  { id:5, icon:'✅', label:'Completed Activities',    color:'var(--track-area5)',  bg:'var(--track-area5-bg)',
+    stages:['Completed'] }
+];
+const AREA_TRACK_COMPLETED_STAGES = ['Final Bill Paid','Work Completed'];
+const AREA_TRACK_AWARD_TRIGGER    = 'TCR Approved';   // auto-moves to Track 3
+
+const TRACK_NEXT_LABEL = { pipeline:'Move to E-Files ▶', efile:'Move to MoU ▶', mou:'Move to Active ▶', active:null };
+
+/* ══════════════════════════════════════════
+   COST-BAND HELPERS FOR E-FILES
+   4 cost-banded stage ladders. Respectful "Sir" honorific applied
+   only at submission / approval steps — plain designation elsewhere.
+   ══════════════════════════════════════════ */
+function getEfileBandKey(cost){
+  const v = parseFloat(cost);
+  if(!Number.isFinite(v) || v <= 0) return 'A'; // default for blank/zero
+  if(v <= 40)   return 'A'; // up to ₹40 Lakhs
+  if(v <= 100)  return 'B'; // ₹40L – ₹1 Cr
+  if(v <= 500)  return 'C'; // ₹1 Cr – ₹5 Cr
+  return 'D';               // above ₹5 Cr
+}
+function getEfileBandLabel(cost){
+  const k = getEfileBandKey(cost);
+  return {
+    A:'Cost band: Up to ₹40 Lakhs (6-stage approval)',
+    B:'Cost band: ₹40L – ₹1 Cr (9-stage approval)',
+    C:'Cost band: ₹1 Cr – ₹5 Cr (12-stage approval)',
+    D:'Cost band: Above ₹5 Cr (13-stage approval)'
+  }[k];
+}
+function getEfileStages(cost){
+  const band = getEfileBandKey(cost);
+  if(band === 'A') return [
+    { id:1,  label:'E-File Creation',             badge:'ep1'  },
+    { id:2,  label:'GM (SD&CSR)',                  badge:'ep2'  },
+    { id:3,  label:'Submitted to D(HR) Sir',       badge:'ep3'  },
+    { id:4,  label:"D(HR) Sir's Finance Review",   badge:'ep4'  },
+    { id:5,  label:"D(HR) Sir's Consideration",    badge:'ep5'  },
+    { id:6,  label:"Approved by D(HR) Sir",        badge:'ep6'  },
+  ];
+  if(band === 'B') return [
+    { id:1,  label:'E-File Creation',             badge:'ep1'  },
+    { id:2,  label:'GM (SD&CSR)',                  badge:'ep2'  },
+    { id:3,  label:'Submitted to D(HR) Sir',       badge:'ep3'  },
+    { id:4,  label:'Submitted to D(F) Sir',        badge:'ep4'  },
+    { id:5,  label:'GM (Finance)',                 badge:'ep5'  },
+    { id:6,  label:"D(F) Sir's Consideration",    badge:'ep6'  },
+    { id:7,  label:"D(F) Sir's Query",            badge:'ep7'  },
+    { id:8,  label:"CMD Sir's Approval",          badge:'ep8'  },
+    { id:9,  label:'Approved',                    badge:'ep9'  },
+  ];
+  if(band === 'C') return [
+    { id:1,  label:'E-File Creation',             badge:'ep1'  },
+    { id:2,  label:'GM (SD&CSR)',                  badge:'ep2'  },
+    { id:3,  label:'Submitted to D(HR) Sir',       badge:'ep3'  },
+    { id:4,  label:'Submitted to D(F) Sir',        badge:'ep4'  },
+    { id:5,  label:'GM (Finance)',                 badge:'ep5'  },
+    { id:6,  label:"D(F) Sir's Consideration",    badge:'ep6'  },
+    { id:7,  label:"D(F) Sir's Query",            badge:'ep7'  },
+    { id:8,  label:"CMD Sir's Approval",          badge:'ep8'  },
+    { id:9,  label:'Company Secretary',           badge:'ep9'  },
+    { id:10, label:'Board Note',                  badge:'ep10' },
+    { id:11, label:'SD&CSR Committee',            badge:'ep11' },
+    { id:12, label:'Approved',                    badge:'ep12' },
+  ];
+  return [
+    { id:1,  label:'E-File Creation',             badge:'ep1'  },
+    { id:2,  label:'GM (SD&CSR)',                  badge:'ep2'  },
+    { id:3,  label:'Submitted to D(HR) Sir',       badge:'ep3'  },
+    { id:4,  label:'Submitted to D(F) Sir',        badge:'ep4'  },
+    { id:5,  label:'GM (Finance)',                 badge:'ep5'  },
+    { id:6,  label:"D(F) Sir's Consideration",    badge:'ep6'  },
+    { id:7,  label:"D(F) Sir's Query",            badge:'ep7'  },
+    { id:8,  label:"CMD Sir's Approval",          badge:'ep8'  },
+    { id:9,  label:'Company Secretary',           badge:'ep9'  },
+    { id:10, label:'Board Note',                  badge:'ep10' },
+    { id:11, label:'SD&CSR Committee',            badge:'ep11' },
+    { id:12, label:'CCL Board',                   badge:'ep12' },
+    { id:13, label:'Approved',                    badge:'ep13' },
+  ];
+}
+
+/* ══════════════════════════════════════════
+   HELPERS
+   ══════════════════════════════════════════ */
+function randomHex(n) { return Array.from(crypto.getRandomValues(new Uint8Array(n))).map(b => b.toString(16).padStart(2,'0')).join(''); }
+function esc(s){ return (s==null?'':String(s)).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+function fmtCost(v){ const n=parseFloat(v); return Number.isFinite(n)&&n>0?'&#8377;'+n.toFixed(2)+'L':'&mdash;'; }
+function numVal(v){ const n=parseFloat(v); return Number.isFinite(n)?n:0; }
+function fmtAmt(n){ const v=Number.isFinite(n)?n:0; return '&#8377;'+v.toFixed(2)+'L'; }
+function toast(msg,err){ const t=document.getElementById('toast'); t.innerHTML=msg; t.className='toast'+(err?' err':''); t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),3000); }
+function getAssignee(code){ if(!code) return null; return OFFICERS.find(o=>o.code===code) || AREAS.find(a=>a.code===code) || null; }
+function getDisplayName(code){ if(!code) return ''; const hq = HQ_USERS.find(u=>u.code===code); if(hq) return hq.name; const a = getAssignee(code); if(a) return a.name; return code; }
+function val(id){ const el = document.getElementById(id); return el ? el.value : ''; }
+function checked(id){ const el = document.getElementById(id); return el ? el.checked : false; }
+function trimVal(id){ return val(id).trim(); }
+function av(code,large){
+  const sz=large?'width:40px;height:40px;font-size:13px':'';
+  if(!code) return '<span class="av NA" style="'+sz+'">&ndash;</span>';
+  const knownClasses=['PP','CK','JAB','SSH','UK','PT','RM','GM','NA'];
+  if(knownClasses.includes(code)) return '<span class="av '+code+'" style="'+sz+'">'+code+'</span>';
+  const c = paletteFor(code);
+  return '<span class="av" style="'+sz+';background:'+c.bg+';color:'+c.fg+'">'+code+'</span>';
+}
+function genId(prefix){ return (prefix||'x')+'_'+Date.now()+'_'+Math.random().toString(36).slice(2,7); }
+function getOP(code){ return { pipeline:DB.pipeline.filter(p=>p.officer===code), efiles:DB.efiles.filter(p=>p.officer===code), mous:DB.mous.filter(p=>p.officer===code), active:DB.active.filter(p=>p.officer===code) }; }
+/* ══════════════════════════════════════════
+   AUTH
+   ══════════════════════════════════════════ */
+function onLoginLoc(){
+  const loc = document.getElementById('login-loc').value; const sel = document.getElementById('login-code'); const pinEl = document.getElementById('login-pin');
+  sel.innerHTML=''; pinEl.value=''; document.getElementById('login-error').textContent='';
+  if(!loc){ sel.innerHTML='<option value="">&#8212; Select location first &#8212;</option>'; sel.disabled=true; pinEl.disabled=true; return; }
+  const users = loc==='hq' ? HQ_USERS : AREA_USERS;
+  const ph = loc==='hq' ? '&#8212; Select HQ officer &#8212;' : '&#8212; Select area office &#8212;';
+  sel.innerHTML='<option value="">'+ph+'</option>'+users.map(u=>'<option value="'+u.code+'">'+u.name+'</option>').join('');
+  sel.disabled=false; pinEl.disabled=true;
+}
+function onLoginOfficer(){ const code=document.getElementById('login-code').value; const pinEl=document.getElementById('login-pin'); pinEl.disabled=!code; pinEl.value=''; document.getElementById('login-error').textContent=''; if(code) setTimeout(()=>pinEl.focus(),50); }
+function doLogin(){
+  const loc=document.getElementById('login-loc').value; const code=document.getElementById('login-code').value; const pin=document.getElementById('login-pin').value; const err=document.getElementById('login-error');
+  if(!loc){ err.textContent='Select a location.'; return; } if(!code){ err.textContent='Select your officer / area.'; return; } if(!pin){ err.textContent='Enter your PIN.'; return; } err.textContent='';
+  if(LOCAL_PINS[code]===undefined||pin!==LOCAL_PINS[code]){ err.textContent='Incorrect PIN.'; return; }
+  const token=randomHex(32); const expires=new Date(Date.now()+TOKEN_TTL_MS).toISOString();
+  sessionToken=token; currentUser=code; const isArea=loc==='area'; currentIsArea=isArea; currentPage=currentIsArea?currentUser:'summary';
+  sessionStorage.setItem(TOKEN_KEY,JSON.stringify({token,user:code,expires,isArea}));
+  document.getElementById('login-screen').style.display='none'; document.getElementById('app').style.display='block';
+  renderNavUser(); initApp();
+}
+function tryRestoreSession(){
+  const saved=sessionStorage.getItem(TOKEN_KEY); if(!saved) return false;
+  try{ const {token,user,expires,isArea}=JSON.parse(saved); if(expires&&new Date(expires)>new Date()){ sessionToken=token; currentUser=user; currentIsArea=!!isArea; currentPage=currentIsArea?currentUser:'summary'; document.getElementById('login-screen').style.display='none'; document.getElementById('app').style.display='block'; renderNavUser(); initApp(); return true; } }catch(e){}
+  sessionStorage.removeItem(TOKEN_KEY); return false;
+}
+function canEdit(officerCode){ return currentUser==='GM'||currentUser==='ADMIN'||currentUser===officerCode; }
+function logout(){ if(refreshTimer) clearInterval(refreshTimer); sessionToken=null; currentUser=null; currentIsArea=false; currentPage='summary'; sessionStorage.removeItem(TOKEN_KEY); document.getElementById('app').style.display='none'; document.getElementById('login-screen').style.display='flex'; document.getElementById('login-pin').value=''; document.getElementById('login-code').value=''; document.getElementById('login-loc').value=''; onLoginLoc(); }
+
+/* ══════════════════════════════════════════
+   NAV
+   ══════════════════════════════════════════ */
+function renderNavUser(){ const el=document.getElementById('nav-user'); if(!el||!currentUser) return; const name=getDisplayName(currentUser); el.innerHTML='<span class="uname">'+esc(name)+'</span><button class="btn-logout" onclick="logout()">Sign out</button>'; renderNav(); }
+function getNavPages(){ if(currentIsArea){ return [{ id:currentUser, label:getDisplayName(currentUser), dotColor:dotColor(currentUser) }]; } return [ { id:'summary', label:'Summary', dotColor:'var(--accent)' }, { id:'reporting', label:'📋 Reporting', dotColor:'var(--blue)' }, ...OFFICERS.map(o=>({ id:o.code, label:o.code, dotColor:dotColor(o.code) })), { id:'areas', label:'🏘️ Areas', dotColor:'var(--teal)' }, { id:'expenditure', label:'💰 Expenditure', dotColor:'var(--green)' }, { id:'vip', label:'⭐ VIP', dotColor:'var(--accent)' } ]; }
+function renderNav(){ const el=document.getElementById('nav-links'); if(!el) return; const pages=getNavPages(); el.innerHTML=pages.map(p=>{ const active=currentPage===p.id?' active':''; const dot=p.dotColor?'<span class="nav-dot" style="background:'+p.dotColor+'"></span>':''; return '<div class="nav-link'+active+'" onclick="showPage(\''+p.id+'\')">'+dot+p.label+'</div>'; }).join(''); }
+function showPage(pageId){ if(currentIsArea) pageId=currentUser; currentPage=pageId; renderNav(); let html=''; if(pageId==='summary') html=renderSummary(); else if(pageId==='reporting') html=renderReportingPage(); else if(pageId==='areas') html=renderAreasPage(); else if(pageId==='expenditure') html=renderExpenditurePage(); else if(pageId==='vip') html=renderVipPage(); else if(currentIsArea) html=renderAreaDashboard(pageId); else html=renderOfficerPage(pageId); document.getElementById('pages').innerHTML=html; }
+
+/* ══════════════════════════════════════════
+   DATA FETCHING
+   ══════════════════════════════════════════ */
+async function sbFetch(path,opts={}){ const url=SB_URL+'/rest/v1/'+path; const headers={'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json',...(opts.extraHeaders||{})}; if(opts.prefer) headers['Prefer']=opts.prefer; const res=await fetch(url,{method:opts.method||'GET',headers,body:opts.body,signal:opts.signal}); if(opts.rawRes) return res; if(res.status===204||res.status===201) return null; const text=await res.text(); return text?JSON.parse(text):null; }
+function setSyncStatus(state,msg){ document.getElementById('sync-dot').className='sync-dot'+(state==='ok'?'':state==='err'?' err':' syncing'); document.getElementById('sync-txt').innerHTML=msg; }
+async function safeFetch(table,query){ try{ const res=await sbFetch(table+(query?'?'+query:''),{rawRes:true}); if(res.status===404||res.status===400||res.status===406){ if(!_missingTables.includes(table)) _missingTables.push(table); return []; } if(!res.ok) throw new Error('HTTP '+res.status); _missingTables=_missingTables.filter(t=>t!==table); const txt=await res.text(); return txt?JSON.parse(txt):[]; }catch(e){ throw e; } }
+async function checkMigrationStatus(){
+  // Probe by explicitly selecting the v17 columns. If they don't exist yet,
+  // PostgREST returns 400 (PGRST204 / unknown column) instead of 200.
+  const probes=[
+    sbFetch('pipeline_projects?select=project_full,vip_ref,stale&limit=1',{rawRes:true}),
+    sbFetch('efile_projects?select=project_full,vip_ref,stale&limit=1',{rawRes:true}),
+    sbFetch('mou_projects?select=project_full,vip_ref,stale&limit=1',{rawRes:true}),
+    sbFetch('active_projects?select=project_full,vip_ref,fin_year,mou_execution_date,exp_current_month,exp_current_fy,exp_cumulative,exp_remain_forecast,mou_extended,district,progress_status,block,panchayat,total_beneficiaries,sc_beneficiaries,st_beneficiaries,obc_beneficiaries,sch_vii_item,project_duration_months,within_25km,project_abstract,execution&limit=1',{rawRes:true})
+  ];
+  try{
+    const results=await Promise.all(probes);
+    const allOk=results.every(r=>r.ok);
+    _migrationStatus = allOk ? 'done' : 'pending';
+  }catch(e){
+    _migrationStatus = 'pending';
+  }
+}
+function mapPipeline(r){ return {id:r.id,type:'pipeline',officer:r.officer||'',project:r.project||'',projectFull:r.project_full||'',agency:r.agency||'',ref:r.ref||'',cost:r.cost||'',stage:r.stage||1,stageNote:r.stage_note||'',hold:r.hold||false,remark:r.remark||'',apFlag:r.ap_flag||'',vipRef:r.vip_ref||'',stale:r.stale||false}; }
+function mapEfile(r){ return {id:r.id,type:'efile',officer:r.officer||'',project:r.project||'',projectFull:r.project_full||'',agency:r.agency||'',ref:r.ref||'',cost:r.cost||'',stage:r.stage||1,stageNote:r.stage_note||'',hold:r.hold||false,remark:r.remark||'',apFlag:r.ap_flag||'',efileNo:r.efile_no||'',vipRef:r.vip_ref||'',stale:r.stale||false}; }
+function mapMou(r){ return {id:r.id,type:'mou',officer:r.officer||'',project:r.project||'',projectFull:r.project_full||'',agency:r.agency||'',ref:r.ref||'',cost:r.cost||'',stage:r.stage||1,stageNote:r.stage_note||'',hold:r.hold||false,remark:r.remark||'',apFlag:r.ap_flag||'',vipRef:r.vip_ref||'',stale:r.stale||false}; }
+function mapAreaProject(r){
+  return {
+    id:r.id, areaCode:r.area_code||'', track:r.track||1, stage:r.stage||'',
+    project:r.project||'', projectFull:r.project_full||'', agency:r.agency||'',
+    cost:r.cost||'', district:r.district||'', efileNo:r.efile_no||'',
+    mouStart:r.mou_start||'', mouEnd:r.mou_end||'', mouExec:r.mou_execution_date||'',
+    finYear:r.fin_year||'', expMonth:r.exp_current_month||'', expFy:r.exp_current_fy||'',
+    expCum:r.exp_cumulative||'', expRemainForecast:r.exp_remain_forecast||'',
+    mouExt:r.mou_extended||'', remark:r.remark||'', completedDate:r.completed_date||'',
+    vipRef:r.vip_ref||''
+  };
+}
+function mapActive(r){ return {id:r.id,type:'active',officer:r.officer||'',project:r.project||'',projectFull:r.project_full||'',agency:r.agency||'',cost:r.cost||'',efileNo:r.efile_no||'',remark:r.remark||'',mouStart:r.mou_start||'',mouEnd:r.mou_end||'',finYear:r.fin_year||'',mouExec:r.mou_execution_date||'',expMonth:r.exp_current_month||'',expFy:r.exp_current_fy||'',expCum:r.exp_cumulative||'',expRemainForecast:r.exp_remain_forecast||'',mouExt:r.mou_extended||'',district:r.district||'',progStatus:r.progress_status||'',vipRef:r.vip_ref||'',block:r.block||'',panchayat:r.panchayat||'',totalBen:r.total_beneficiaries||'',scBen:r.sc_beneficiaries||'',stBen:r.st_beneficiaries||'',obcBen:r.obc_beneficiaries||'',schVii:r.sch_vii_item||'',durationMonths:r.project_duration_months||'',within25km:r.within_25km||'',abstract:r.project_abstract||'',execution:r.execution||''}; }
+async function loadData(silent){ if(!silent) setSyncStatus('syncing','Loading data&hellip;'); try{ const migrationProbe = currentUser==='GM' ? checkMigrationStatus() : Promise.resolve(); const [pRes,eRes,mRes,aRes,rfRes,apRes]=await Promise.allSettled([safeFetch('pipeline_projects','order=id.asc'),safeFetch('efile_projects','order=id.asc'),safeFetch('mou_projects','order=id.asc'),safeFetch('active_projects','order=id.asc'),safeFetch('reporting_flags','order=project_id.asc'),safeFetch('area_projects','order=id.asc')]); await migrationProbe; if(pRes.status==='fulfilled') DB.pipeline=pRes.value.map(mapPipeline); if(eRes.status==='fulfilled') DB.efiles=eRes.value.map(mapEfile); if(mRes.status==='fulfilled') DB.mous=mRes.value.map(mapMou); if(aRes.status==='fulfilled') DB.active=aRes.value.map(mapActive); if(rfRes.status==='fulfilled'){ DB.reportFlags={}; rfRes.value.forEach(r=>{DB.reportFlags[r.project_id]=r;}); }
+        if(apRes&&apRes.status==='fulfilled') DB.areaProjects=apRes.value.map(mapAreaProject); const anyFail=[pRes,eRes,mRes,aRes,rfRes,apRes].filter(Boolean).some(r=>r.status==='rejected'&&r.reason&&!String(r.reason.message).startsWith('HTTP 4')); countdown=REFRESH_SEC; const t=new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'}); if(anyFail) setSyncStatus('err','Server unreachable &nbsp;<span style="cursor:pointer;color:#93c5fd" onclick="initApp()">Retry</span>'); else if(_missingTables.length>0) setSyncStatus('ok','Live &middot; setup needed for: '+_missingTables.join(', ')+' &middot; '+t); else setSyncStatus('ok','Live &middot; refresh in '+REFRESH_SEC+'s &middot; '+t); return !anyFail; }catch(e){ setSyncStatus('err','Server unreachable'); return false; } }
+async function initApp(){ await loadData(false); showPage(currentPage); startAutoRefresh(); }
+function startAutoRefresh(){ if(refreshTimer) clearInterval(refreshTimer); countdown=REFRESH_SEC; refreshTimer=setInterval(async()=>{ countdown--; const dot=document.getElementById('sync-dot'); if(dot&&dot.className==='sync-dot') setSyncStatus('ok','Live &middot; refresh in '+countdown+'s &middot; '+new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'})); if(countdown<=0){ const ok=await loadData(true); if(ok&&!document.getElementById('modal-bg').classList.contains('open')) showPage(currentPage); }},1000); }
+
+/* ══════════════════════════════════════════
+   CRUD
+   ══════════════════════════════════════════ */
+function showSaving(on,msg){ document.getElementById('saving-msg').textContent=msg||'Saving...'; document.getElementById('saving-overlay').classList[on?'add':'remove']('show'); }
+function getDBArray(type){ if(type==='pipeline') return DB.pipeline; if(type==='efile') return DB.efiles; if(type==='mou') return DB.mous; if(type==='active') return DB.active; return []; }
+function getTable(type){ if(type==='pipeline') return 'pipeline_projects'; if(type==='efile') return 'efile_projects'; if(type==='mou') return 'mou_projects'; if(type==='active') return 'active_projects'; return ''; }
+async function persistRow(item){
+  if(!canEdit(item.officer||'')&&item.officer){ toast('Not authorised to edit this record.',true); return; }
+  showSaving(true);
+  try{
+    const table=getTable(item.type); let base={};
+    if(item.type==='active'){
+      base={id:item.id,officer:item.officer||'',project:item.project||'',project_full:item.projectFull||'',agency:item.agency||'',cost:item.cost||'',efile_no:item.efileNo||'',remark:item.remark||'',mou_start:item.mouStart||'',mou_end:item.mouEnd||'',fin_year:item.finYear||'',mou_execution_date:item.mouExec||'',exp_current_month:item.expMonth||'',exp_current_fy:item.expFy||'',exp_cumulative:item.expCum||'',exp_remain_forecast:item.expRemainForecast||'',mou_extended:item.mouExt||'',district:item.district||'',progress_status:item.progStatus||'',vip_ref:item.vipRef||'',block:item.block||'',panchayat:item.panchayat||'',total_beneficiaries:item.totalBen||'',sc_beneficiaries:item.scBen||'',st_beneficiaries:item.stBen||'',obc_beneficiaries:item.obcBen||'',sch_vii_item:item.schVii||'',project_duration_months:item.durationMonths||'',within_25km:item.within25km||'',project_abstract:item.abstract||'',execution:item.execution||''};
+    } else {
+      base={id:item.id,officer:item.officer||'',project:item.project||'',project_full:item.projectFull||'',agency:item.agency||'',ref:item.ref||'',cost:item.cost||'',stage:item.stage||1,stage_note:item.stageNote||'',hold:!!item.hold,remark:item.remark||'',vip_ref:item.vipRef||'',stale:!!item.stale};
+      if(item.type==='pipeline') base.ap_flag=item.apFlag||'';
+      if(item.type==='efile'){ base.efile_no=item.efileNo||''; base.ap_flag=item.apFlag||''; }
+    }
+    let res=await sbFetch(table,{method:'POST',prefer:'resolution=merge-duplicates,return=minimal',body:JSON.stringify(base),rawRes:true});
+    if(res.status===400){ const txt=await res.text(); if(txt.includes('PGRST204')){ if(!_missingTables.includes(table)) _missingTables.push(table); const minimal={id:item.id,officer:item.officer||'',project:item.project||'',agency:item.agency||'',ref:item.ref||'',cost:item.cost||''}; res=await sbFetch(table,{method:'POST',prefer:'resolution=merge-duplicates,return=minimal',body:JSON.stringify(minimal),rawRes:true}); if(res.status===200||res.status===201||res.status===204){ toast('⚠ DB Missing Columns. Run SQL from Summary page.',true); return; } } throw new Error('HTTP 400: '+txt); }
+    if(res.status!==200&&res.status!==201&&res.status!==204) throw new Error('HTTP '+res.status);
+    setSyncStatus('ok','Saved &middot; '+new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'})); toast('Saved successfully');
+  }catch(e){ setSyncStatus('err','Save failed'); toast('Could not save: '+e.message,true); }finally{ showSaving(false); }
+}
+async function removeRow(id,type){ showSaving(true,'Deleting...'); try{ const res=await sbFetch(getTable(type)+'?id=eq.'+encodeURIComponent(id),{method:'DELETE',rawRes:true}); if(res.status!==200&&res.status!==204) throw new Error('HTTP '+res.status); if(type==='pipeline') DB.pipeline=DB.pipeline.filter(p=>String(p.id)!==String(id)); else if(type==='efile') DB.efiles=DB.efiles.filter(e=>String(e.id)!==String(id)); else if(type==='mou') DB.mous=DB.mous.filter(m=>String(m.id)!==String(id)); else if(type==='active') DB.active=DB.active.filter(a=>String(a.id)!==String(id)); setSyncStatus('ok','Deleted &middot; '+new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'})); }catch(e){ toast('Could not delete.',true); throw e; }finally{ showSaving(false); } }
+
+/* ══════════════════════════════════════════
+   STAGE RENDERING — cost-aware for efile
+   ══════════════════════════════════════════ */
+function resolveStages(type, cost){ if(type==='efile') return getEfileStages(cost); return TRACKS[type] ? TRACKS[type].stages : []; }
+function getStageBadgeClass(type, stageId, cost){ const stages = resolveStages(type, cost); const s = stages.find(x=>x.id===stageId); return s ? s.badge : ''; }
+function getStageLabel(type, stageId, cost){ const stages = resolveStages(type, cost); const s = stages.find(x=>x.id===stageId); return s ? stageId+'. '+s.label : 'Stage '+stageId; }
+function stageBadge(type, stage, note, hold, cost){ if(hold) return '<span class="badge bhold">On hold</span>'; return '<span class="badge '+getStageBadgeClass(type,stage,cost)+'">'+getStageLabel(type,stage,cost)+'</span>'+(note?'<br><span style="font-size:10px;color:var(--muted);margin-top:2px;display:block">'+esc(note)+'</span>':''); }
+function stageFlow(type, currentStage, cost){
+  const stages = resolveStages(type, cost); const track = TRACKS[type]; if(!track) return '';
+  let h='<div class="stage-flow">';
+  stages.forEach((s,i)=>{
+    const isDone=s.id<currentStage; const isCurrent=s.id===currentStage; const cls=isDone?'done':isCurrent?'current':'';
+    const style=isCurrent?'background:'+track.bg+';color:'+track.color+';box-shadow:0 0 0 2px '+track.color:isDone?'background:#e5e7eb;color:#374151':'';
+    h+='<span class="sf-step '+cls+'" style="'+style+'">'+s.label+'</span>';
+    if(i<stages.length-1) h+='<span class="sf-arrow">›</span>';
+  });
+  return h+'</div>';
+}
+function vipPill(vipRef){ return vipRef?'<span class="vip-pill">⭐ '+esc(vipRef)+'</span>':''; }
+/* ══════════════════════════════════════════
+   SUMMARY PAGE
+   ══════════════════════════════════════════ */
+function renderSummary(){
+  const allItems=[...DB.pipeline,...DB.efiles,...DB.mous,...DB.active];
+  const pipeActive=DB.pipeline.filter(p=>!p.hold).length; const eActive=DB.efiles.filter(e=>!e.hold).length; const mouActive=DB.mous.filter(m=>!m.hold).length; const actActive=DB.active.length;
+  const oRows=OFFICERS.map(o=>{ const {pipeline,efiles,mous,active}=getOP(o.code); return {o,pAct:pipeline.filter(p=>!p.hold).length,ef:efiles.filter(e=>!e.hold).length,mo:mous.length,ac:active.length}; });
+  const maxLoad=Math.max(...oRows.map(r=>r.pAct+r.ef+r.mo+r.ac),1);
+  const vipTotal=allItems.filter(p=>p.vipRef).length;
+  return '<div class="page active"><div class="page-header"><div><h1>GM (CSR) &mdash; Summary</h1><p>CCL &middot; FY 2026-27 &middot; '+new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})+'</p></div><div class="page-header-actions">'+(currentUser==='GM'?'<button class="btn btn-acc" onclick="openAdd(\'\',\'pipeline\')">+ Add</button>':'')+'<button class="btn" onclick="exportAllXLSX()" style="background:#1e7e34;color:#fff;border-color:#155d27;font-weight:700">&#8681; Excel All</button><button class="btn btn-ghost" onclick="initApp()">&#8635; Refresh</button></div></div><div class="stats-row"><div class="stat acc"><div class="lbl">Total</div><div class="val">'+allItems.length+'</div></div><div class="stat blu"><div class="lbl">Pipeline</div><div class="val">'+pipeActive+'</div></div><div class="stat prp"><div class="lbl">E-Files</div><div class="val">'+eActive+'</div></div><div class="stat tel"><div class="lbl">MoU</div><div class="val">'+mouActive+'</div></div><div class="stat grn" style="border-left:3px solid var(--track-active)"><div class="lbl">Active Projects</div><div class="val">'+actActive+'</div></div><div class="stat acc" style="border-left:3px solid var(--accent)"><div class="lbl">⭐ VIP-linked</div><div class="val">'+vipTotal+'</div><div class="sub" style="cursor:pointer;color:var(--blue)" onclick="showPage(\'vip\')">View VIP tab &rarr;</div></div></div><div class="section"><div class="sec-hdr"><span class="sec-title">Officer workload</span><span class="sec-sub">Area-office workload is on the <span style="color:var(--blue);cursor:pointer" onclick="showPage(\'areas\')">🏘️ Areas</span> tab</span></div><div class="tw"><table><thead><tr><th>Officer</th><th title="Pipeline Proposals">Pipeline</th><th title="E-files active">E-Files</th><th title="MoU items">MoU</th><th title="Active Projects">Active</th><th>Load</th></tr></thead><tbody>'+
+    oRows.map(({o,pAct,ef,mo,ac})=>'<tr><td><div style="display:flex;align-items:center;gap:8px">'+av(o.code)+'<div><div style="font-weight:700;font-size:12px">'+o.name+'</div><span style="font-size:11px;color:var(--blue);cursor:pointer" onclick="showPage(\''+o.code+'\')">'+o.code+' &rarr;</span></div></div></td><td><strong>'+pAct+'</strong></td><td>'+(ef?'<span class="badge ep1">'+ef+'</span>':'&mdash;')+'</td><td>'+(mo?'<span class="badge mp1">'+mo+'</span>':'&mdash;')+'</td><td>'+(ac?'<span class="badge" style="background:var(--track-active-bg);color:var(--track-active)">'+ac+'</span>':'&mdash;')+'</td><td>'+(ap?'<span class="badge" style="background:#f3f4f6;color:#374151">'+ap+' active'+(apComp?' +'+apComp+' ✅':'')+'</span>':'&mdash;')+'</td><td><div class="pbar"><div class="pbar-fill" style="width:'+Math.round(((pAct+ef+mo+ac+(ap||0))/maxLoad)*100)+'%;background:'+dotColor(o.code)+'"></div></div></td></tr>').join('')+'</tbody></table></div></div>'+
+    renderSummaryStageMatrix()+renderDbSetupNotice()+'</div>';
+}
+function renderDbSetupNotice(){
+  if(currentUser!=='GM') return '';
+  if(_migrationStatus==='done') return '';
+  if(localStorage.getItem('ccl_migration_v17_dismissed')==='1') return '';
+  const sql=`-- CCL CSR Monitor — Full Schema Migration (v17)
+
+-- 1. Add project_full to all 4 tables
+ALTER TABLE pipeline_projects ADD COLUMN IF NOT EXISTS project_full text DEFAULT '';
+ALTER TABLE efile_projects   ADD COLUMN IF NOT EXISTS project_full text DEFAULT '';
+ALTER TABLE mou_projects     ADD COLUMN IF NOT EXISTS project_full text DEFAULT '';
+ALTER TABLE active_projects  ADD COLUMN IF NOT EXISTS project_full text DEFAULT '';
+
+-- 2. VIP reference tracking
+ALTER TABLE pipeline_projects ADD COLUMN IF NOT EXISTS vip_ref text DEFAULT '';
+ALTER TABLE efile_projects   ADD COLUMN IF NOT EXISTS vip_ref text DEFAULT '';
+ALTER TABLE mou_projects     ADD COLUMN IF NOT EXISTS vip_ref text DEFAULT '';
+ALTER TABLE active_projects  ADD COLUMN IF NOT EXISTS vip_ref text DEFAULT '';
+
+-- 3. Stale flag for stage re-verification
+ALTER TABLE pipeline_projects ADD COLUMN IF NOT EXISTS stale boolean DEFAULT false;
+ALTER TABLE efile_projects   ADD COLUMN IF NOT EXISTS stale boolean DEFAULT false;
+ALTER TABLE mou_projects     ADD COLUMN IF NOT EXISTS stale boolean DEFAULT false;
+
+-- 4. Active Projects V16 columns
+ALTER TABLE active_projects
+  DROP COLUMN IF EXISTS ref, DROP COLUMN IF EXISTS ap_flag,
+  DROP COLUMN IF EXISTS stage, DROP COLUMN IF EXISTS stage_note, DROP COLUMN IF EXISTS hold;
+ALTER TABLE active_projects
+  ADD COLUMN IF NOT EXISTS fin_year text DEFAULT '',
+  ADD COLUMN IF NOT EXISTS mou_execution_date text DEFAULT '',
+  ADD COLUMN IF NOT EXISTS efile_no text DEFAULT '',
+  ADD COLUMN IF NOT EXISTS exp_current_month text DEFAULT '',
+  ADD COLUMN IF NOT EXISTS exp_current_fy text DEFAULT '',
+  ADD COLUMN IF NOT EXISTS exp_cumulative text DEFAULT '',
+  ADD COLUMN IF NOT EXISTS exp_remain_forecast text DEFAULT '',
+  ADD COLUMN IF NOT EXISTS mou_extended text DEFAULT '',
+  ADD COLUMN IF NOT EXISTS district text DEFAULT '',
+  ADD COLUMN IF NOT EXISTS progress_status text DEFAULT '';
+
+-- 4b. Active Projects Annex II fields (Block/Panchayat/Beneficiaries/etc.)
+ALTER TABLE active_projects
+  ADD COLUMN IF NOT EXISTS block text DEFAULT '',
+  ADD COLUMN IF NOT EXISTS panchayat text DEFAULT '',
+  ADD COLUMN IF NOT EXISTS total_beneficiaries text DEFAULT '',
+  ADD COLUMN IF NOT EXISTS sc_beneficiaries text DEFAULT '',
+  ADD COLUMN IF NOT EXISTS st_beneficiaries text DEFAULT '',
+  ADD COLUMN IF NOT EXISTS obc_beneficiaries text DEFAULT '',
+  ADD COLUMN IF NOT EXISTS sch_vii_item text DEFAULT '',
+  ADD COLUMN IF NOT EXISTS project_duration_months text DEFAULT '',
+  ADD COLUMN IF NOT EXISTS within_25km text DEFAULT '',
+  ADD COLUMN IF NOT EXISTS project_abstract text DEFAULT '',
+  ADD COLUMN IF NOT EXISTS execution text DEFAULT '';
+
+-- 5. Pipeline stage migration: Technical Scrutiny inserted at stage 2
+--    Old: 1=Allocation 2=ReviewPrep 3=BBLPrep 4=BBLSubmitted 5=BBLSigned
+--    New: 1=Allocation 2=TechnicalScrutiny 3=ReviewPrep 4=BBLPrep 5=BBLSubmitted 6=BBLSigned
+UPDATE pipeline_projects SET stage=6 WHERE stage=5;
+UPDATE pipeline_projects SET stage=5 WHERE stage=4;
+UPDATE pipeline_projects SET stage=4 WHERE stage=3;
+UPDATE pipeline_projects SET stage=3 WHERE stage=2;
+-- Stage 1 (Allocation) stays as 1; new stage 2 (Technical Scrutiny) is unpopulated by default
+
+-- 6. E-File stage reset (4-band system replaces old single ladder)
+UPDATE efile_projects SET stage=1, stale=true;
+
+-- 7. Area Projects table (NEW in v17)
+CREATE TABLE IF NOT EXISTS public.area_projects (
+  id text PRIMARY KEY,
+  area_code text NOT NULL DEFAULT '',
+  track integer NOT NULL DEFAULT 1,
+  stage text DEFAULT '',
+  project text DEFAULT '',
+  project_full text DEFAULT '',
+  agency text DEFAULT '',
+  cost text DEFAULT '',
+  district text DEFAULT '',
+  efile_no text DEFAULT '',
+  fin_year text DEFAULT '',
+  mou_execution_date text DEFAULT '',
+  mou_start text DEFAULT '',
+  mou_end text DEFAULT '',
+  mou_extended text DEFAULT '',
+  exp_current_month text DEFAULT '',
+  exp_current_fy text DEFAULT '',
+  exp_cumulative text DEFAULT '',
+  exp_remain_forecast text DEFAULT '',
+  remark text DEFAULT '',
+  completed_date text DEFAULT '',
+  vip_ref text DEFAULT '',
+  created_at timestamptz DEFAULT now()
+);
+ALTER TABLE public.area_projects ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "anon_all" ON public.area_projects FOR ALL USING (true) WITH CHECK (true);`;
+  const statusLine = _migrationStatus==='pending'
+    ? '<p style="font-size:11px;color:#b91c1c;margin-bottom:8px;font-weight:600">&#9888; Checked just now — one or more required columns are still missing in Supabase.</p>'
+    : '<p style="font-size:11px;color:#7a4a00;margin-bottom:8px">Checking column status&hellip; if you have already run this and still see this notice after a refresh, use "Hide this notice" below.</p>';
+  return '<div class="section" style="border-top:3px solid var(--amber)"><div class="sec-hdr"><span class="sec-title">&#9888; Database setup / migration required</span><button class="btn btn-ghost btn-sm" onclick="dismissDbSetupNotice()">Hide this notice</button></div><div style="padding:14px"><p style="font-size:12px;color:#7a4a00;margin-bottom:10px;font-weight:600">Run this SQL in your Supabase Dashboard SQL Editor to migrate the database for v17 (new Pipeline stage, 4-band E-File ladders, projectFull field on all tracks, stale flags).</p>'+statusLine+'<p style="font-size:11px;color:#7a4a00;margin-bottom:8px">⚠ Steps 5 &amp; 6 UPDATE live data — take a backup first. E-Files will be reset to stage 1 and flagged for re-verification, since the new 4-band cost system cannot auto-map old stage numbers.</p><pre style="background:#1a1a2e;color:#e2e8f0;padding:14px;border-radius:var(--r);font-size:11px;overflow-x:auto;white-space:pre-wrap">'+esc(sql)+'</pre></div></div>';
+}
+function dismissDbSetupNotice(){ localStorage.setItem('ccl_migration_v17_dismissed','1'); toast('Notice hidden. It will reappear automatically only if the app detects missing columns again after you clear this.'); showPage(currentPage); }
+function renderSummaryStageMatrix(){
+  let h='<div class="section"><div class="sec-hdr"><span class="sec-title">Stage matrix — HQ officers</span></div><div style="padding:14px">';
+  ['pipeline','efile','mou','active'].forEach(trackId=>{
+    const track=TRACKS[trackId]; const arr=trackId==='pipeline'?DB.pipeline:trackId==='efile'?DB.efiles:trackId==='mou'?DB.mous:DB.active;
+    const matrixStages = trackId==='efile' ? [] : (track.stages||[]);
+    h+='<div style="margin-bottom:16px"><div class="track-pill" style="background:'+track.bg+';color:'+track.color+';margin-bottom:8px">'+track.icon+' '+track.label+'</div>';
+    if(trackId==='efile'){
+      h+='<p style="font-size:11px;color:var(--muted);margin-bottom:8px">E-File stages are cost-dependent (4 bands). Summary shows active count per officer only.</p>';
+      h+='<div class="tw"><table><thead><tr><th>Metric</th>'+OFFICERS.map(o=>'<th style="text-align:center">'+o.code+'</th>').join('')+'<th style="text-align:center">HQ Total</th><th style="text-align:center">Grand Total*</th></tr></thead><tbody>';
+      const oActive=OFFICERS.map(o=>arr.filter(p=>p.officer===o.code&&!p.hold).length);
+      const oHold=OFFICERS.map(o=>arr.filter(p=>p.officer===o.code&&p.hold).length);
+      h+='<tr><td>Active</td>'+oActive.map(c=>'<td style="text-align:center">'+(c?'<strong>'+c+'</strong>':'<span style="color:#e5e7eb">&middot;</span>')+'</td>').join('')+'<td style="text-align:center;font-weight:700">'+(oActive.reduce((a,b)=>a+b,0)||'&mdash;')+'</td><td style="text-align:center;font-weight:700;color:var(--muted)">'+(arr.filter(p=>!p.hold).length||'&mdash;')+'</td></tr>';
+      h+='<tr><td><span class="badge bhold">On hold</span></td>'+oHold.map(c=>'<td style="text-align:center">'+(c?c:'<span style="color:#e5e7eb">&middot;</span>')+'</td>').join('')+'<td style="text-align:center">'+(oHold.reduce((a,b)=>a+b,0)||'&mdash;')+'</td><td style="text-align:center;color:var(--muted)">'+(arr.filter(p=>p.hold).length||'&mdash;')+'</td></tr>';
+      h+='</tbody></table></div>';
+    } else {
+      h+='<div class="tw"><table><thead><tr><th>Stage</th>'+OFFICERS.map(o=>'<th style="text-align:center">'+o.code+'</th>').join('')+'<th style="text-align:center">All officers</th><th style="text-align:center">Grand total*</th></tr></thead><tbody>'+
+        (matrixStages.length ? matrixStages.map(s=>{
+          const row=OFFICERS.map(o=>arr.filter(p=>p.officer===o.code&&p.stage===s.id&&!p.hold).length); const offTot=row.reduce((a,b)=>a+b,0); const grandTot=arr.filter(p=>p.stage===s.id&&!p.hold).length;
+          return '<tr><td><span class="badge '+s.badge+'">'+s.id+'. '+s.label+'</span></td>'+row.map(c=>'<td style="text-align:center">'+(c?'<strong>'+c+'</strong>':'<span style="color:#e5e7eb">&middot;</span>')+'</td>').join('')+'<td style="text-align:center;font-weight:700">'+(offTot||'&mdash;')+'</td><td style="text-align:center;font-weight:700;color:var(--muted)">'+(grandTot||'&mdash;')+'</td></tr>';
+        }).join('') : (()=>{ const row=OFFICERS.map(o=>arr.filter(p=>p.officer===o.code).length); const offTot=row.reduce((a,b)=>a+b,0); const grandTot=arr.length; return '<tr><td>All</td>'+row.map(c=>'<td style="text-align:center">'+(c?'<strong>'+c+'</strong>':'<span style="color:#e5e7eb">&middot;</span>')+'</td>').join('')+'<td style="text-align:center;font-weight:700">'+(offTot||'&mdash;')+'</td><td style="text-align:center;font-weight:700;color:var(--muted)">'+(grandTot||'&mdash;')+'</td></tr>'; })())
+        +'</tbody></table></div>';
+    }
+    h+='</div>';
+  });
+  return h+'<p style="font-size:11px;color:var(--muted);margin-top:4px">*Grand total includes Area-office items not shown in this HQ-only matrix — see the 🏘️ Areas tab.</p></div></div>';
+}
+/* ══════════════════════════════════════════
+   OFFICER PAGE
+   ══════════════════════════════════════════ */
+function renderOfficerPage(code){
+  const isOfficerOrArea=OFFICERS.find(o=>o.code===code)||AREAS.find(a=>a.code===code);
+  const displayName=getDisplayName(code)||code;
+  if(!isOfficerOrArea&&!['GM','ADMIN','CMD','DHR'].includes(code)){ return '<div class="page active"><p style="padding:20px;color:var(--muted)">Officer / area not found.</p></div>'; }
+  const {pipeline,efiles,mous,active}=getOP(code); const canE=canEdit(code);
+  let html='<div class="page active"><div class="page-header"><div style="display:flex;align-items:center;gap:10px">'+av(code,true)+'<div><h1>'+esc(displayName)+'</h1><p>'+(canE?'<strong style="color:var(--green)">Edit access</strong>':'<span style="color:var(--muted)">View only</span>')+'</p></div></div><div class="page-header-actions"><button class="btn" onclick="exportOfficerXLSX(\''+code+'\')" style="background:#1e7e34;color:#fff;border-color:#155d27;font-weight:700">&#8681; Excel</button><button class="btn btn-ghost" onclick="initApp()">&#8635; Refresh</button></div></div><div class="stats-row"><div class="stat blu"><div class="lbl">Pipeline</div><div class="val">'+pipeline.filter(p=>!p.hold).length+'</div></div><div class="stat prp"><div class="lbl">E-Files</div><div class="val">'+efiles.filter(e=>!e.hold).length+'</div></div><div class="stat tel"><div class="lbl">MoU</div><div class="val">'+mous.filter(m=>!m.hold).length+'</div></div><div class="stat grn" style="border-left:3px solid var(--track-active)"><div class="lbl">Active</div><div class="val">'+active.length+'</div></div></div>';
+  html+=renderTrackSection('pipeline',pipeline,code,canE);
+  html+=renderTrackSection('efile',efiles,code,canE);
+  html+=renderTrackSection('mou',mous,code,canE);
+  html+=renderActiveTrackSection(active,code,canE);
+  html+=renderHQCompletedSection(active);
+  if(!pipeline.length&&!efiles.length&&!mous.length&&!active.length){ html+='<div class="section"><div class="empty-state"><div class="es-icon">📂</div><p>No projects assigned yet.</p></div></div>'; }
+  return html+'</div>';
+}
+
+/* ══════════════════════════════════════════
+   HQ OFFICER — COMPLETED ACTIVITY SECTION
+   ══════════════════════════════════════════ */
+function renderHQCompletedSection(activeItems){
+  const completed=activeItems.filter(p=>p.progStatus==='Work Completed'||p.progStatus==='Final Bill Paid');
+  if(!completed.length) return '';
+  let html='<div class="section" style="border-top:3px solid #374151">';
+  html+='<div class="track-header"><span class="track-pill" style="background:#f3f4f6;color:#374151">✅ Completed Activities</span><span class="sec-sub">'+completed.length+' item(s) &mdash; read-only archive</span></div>';
+  html+='<div class="tw"><table><thead><tr><th>#</th><th>Fin Year</th><th>Project</th><th>E-File No.</th><th>Value (₹L)</th><th>Agency</th><th>Status</th><th>Remarks</th></tr></thead><tbody>';
+  html+=completed.map((p,i)=>'<tr><td style="color:var(--muted);font-size:11px">'+(i+1)+'</td><td class="text-xs">'+esc(p.finYear)+'</td><td class="pname">'+esc(p.project)+'</td><td class="text-xs" style="color:var(--blue);font-weight:600">'+esc(p.efileNo)+'</td><td class="cost">'+fmtCost(p.cost)+'</td><td class="agt">'+esc(p.agency)+'</td><td><span class="badge" style="background:#f3f4f6;color:#374151">'+esc(p.progStatus)+'</span></td><td class="text-xs">'+esc(p.remark)+'</td></tr>').join('');
+  return html+'</tbody></table></div></div>';
+}
+
+/* Pipeline dashboard is trimmed to: Project, Agency, Ref, Cost, Stage, Remarks.
+   E-Files dashboard shows a cost-band chip + cost-aware stage badge. */
+function renderTrackSection(trackId, items, officerCode, canE){
+  const track=TRACKS[trackId]; const act=items.filter(p=>!p.hold); const onHold=items.filter(p=>p.hold);
+  const isPipeline=trackId==='pipeline'; const isEfile=trackId==='efile';
+  let html='<div class="section track-'+trackId+'"><div class="track-header"><span class="track-pill">'+track.icon+' '+track.label+'</span><span class="sec-sub">'+items.length+' item(s)</span><div style="margin-left:auto;display:flex;gap:6px">'+(canE?'<button class="btn btn-sm btn-'+trackId+'" onclick="openAdd(\''+officerCode+'\',\''+trackId+'\')">+ Add</button>':'')+'</div></div>';
+  if(act.length){
+    if(isPipeline){
+      html+='<div class="tw"><table id="tbl-pipeline-'+officerCode+'"><thead><tr><th>#</th><th>Project</th><th>Agency</th><th>Ref.</th><th>Cost</th><th>Stage</th><th>Remarks</th>'+(canE?'<th></th>':'')+'</tr></thead><tbody>'+
+        act.map((p,i)=>{
+          const maxStages=TRACKS.pipeline.stages.length;
+          return '<tr><td style="color:var(--muted);font-size:11px">'+(i+1)+'</td>'+
+            '<td class="pname">'+esc(p.project)+(p.projectFull?'<div class="text-xs" style="color:var(--muted);font-weight:400;margin-top:2px" title="'+esc(p.projectFull)+'">'+esc(p.projectFull.length>60?p.projectFull.slice(0,60)+'…':p.projectFull)+'</div>':'')+'</td>'+
+            '<td class="agt">'+(esc(p.agency)||'&mdash;')+'</td>'+
+            '<td style="font-size:11px;color:var(--muted)">'+(esc(p.ref)||'&mdash;')+'</td>'+
+            '<td class="cost">'+fmtCost(p.cost)+'</td>'+
+            '<td>'+stageBadge(trackId,p.stage,null,false,p.cost)+(p.stale?'<br><span class="badge stale">&#9888; Re-verify stage</span>':'')+'</td>'+
+            '<td style="font-size:11px;color:var(--muted)">'+(esc(p.remark)||'&mdash;')+'</td>'+
+            (canE?'<td style="white-space:nowrap"><button class="btn btn-ghost btn-sm" onclick="openEdit(\''+p.id+'\',\'pipeline\')">Edit</button> '+
+              (p.stage<maxStages?'<button class="btn btn-ghost btn-sm" onclick="quickAdvance(\''+p.id+'\',\'pipeline\')">&#9654; Next</button> ':
+              '<button class="btn btn-sm" style="background:#1a5fa8;color:#fff;border-color:#1248a0;font-weight:700" onclick="promoteToNextTrack(\''+p.id+'\',\'pipeline\')">'+TRACK_NEXT_LABEL.pipeline+'</button> ')+
+              '<button class="btn btn-sm" style="background:#fef3e0;color:#d4820a;border-color:#f5d99a" onclick="quickToggleHold(\''+p.id+'\',\'pipeline\',true)">&#9646;&#9646; Hold</button></td>':'')+'</tr>';
+        }).join('')+'</tbody></table></div>';
+    } else if(isEfile){
+      html+='<div class="tw"><table id="tbl-efile-'+officerCode+'"><thead><tr><th>#</th><th>Project</th><th>Agency</th><th>E-File No.</th><th>Cost</th><th>Band</th><th>Stage</th><th>Note</th><th>VIP Ref.</th><th>Remarks</th>'+(canE?'<th></th>':'')+'</tr></thead><tbody>'+
+        act.map((p,i)=>{
+          const stages=getEfileStages(p.cost); const maxStages=stages.length;
+          const bandKey=getEfileBandKey(p.cost);
+          const bandColors={A:'background:#dbeafe;color:#1d4ed8',B:'background:#ede9fe;color:#5b21b6',C:'background:#fef3c7;color:#92400e',D:'background:#fde8c8;color:#b45309'};
+          const bandChip='<span class="badge" style="'+bandColors[bandKey]+';font-size:10px">Band '+bandKey+'</span>';
+          return '<tr><td style="color:var(--muted);font-size:11px">'+(i+1)+'</td>'+
+            '<td class="pname">'+esc(p.project)+'</td>'+
+            '<td class="agt">'+(esc(p.agency)||'&mdash;')+'</td>'+
+            '<td style="font-size:11px;color:var(--blue);font-weight:600">'+(esc(p.efileNo)||'&mdash;')+'</td>'+
+            '<td class="cost" data-band="'+bandKey+'">'+fmtCost(p.cost)+'</td>'+
+            '<td>'+stageBadge(trackId,p.stage,null,false,p.cost)+(p.stale?'<br><span class="badge stale">&#9888; Re-verify stage</span>':'')+'</td>'+
+            '<td style="font-size:11px;color:var(--muted)">'+(esc(p.stageNote)||'&mdash;')+'</td>'+
+            '<td>'+(vipPill(p.vipRef)||'&mdash;')+'</td>'+
+            '<td style="font-size:11px;color:var(--muted)">'+(esc(p.remark)||'&mdash;')+'</td>'+
+            (canE?'<td style="white-space:nowrap"><button class="btn btn-ghost btn-sm" onclick="openEdit(\''+p.id+'\',\'efile\')">Edit</button> '+
+              (p.stage<maxStages?'<button class="btn btn-ghost btn-sm" onclick="quickAdvance(\''+p.id+'\',\'efile\')">&#9654; Next</button> ':
+              '<button class="btn btn-sm" style="background:#1a5fa8;color:#fff;border-color:#1248a0;font-weight:700" onclick="promoteToNextTrack(\''+p.id+'\',\'efile\')">'+TRACK_NEXT_LABEL.efile+'</button> ')+
+              '<button class="btn btn-sm" style="background:#fef3e0;color:#d4820a;border-color:#f5d99a" onclick="quickToggleHold(\''+p.id+'\',\'efile\',true)">&#9646;&#9646; Hold</button></td>':'')+'</tr>';
+        }).join('')+'</tbody></table></div>';
+    } else {
+      html+='<div class="tw"><table id="tbl-'+trackId+'-'+officerCode+'"><thead><tr><th>#</th><th>Project</th><th>Agency</th><th>Ref.</th><th>Cost</th><th>Stage</th><th>Note</th><th>VIP Ref.</th><th>Remarks</th>'+(canE?'<th></th>':'')+'</tr></thead><tbody>'+
+        act.map((p,i)=>{
+          const maxStages=track.stages.length;
+          return '<tr><td style="color:var(--muted);font-size:11px">'+(i+1)+'</td>'+
+            '<td class="pname">'+esc(p.project)+'</td>'+
+            '<td class="agt">'+(esc(p.agency)||'&mdash;')+'</td>'+
+            '<td style="font-size:11px;color:var(--muted)">'+(esc(p.ref)||'&mdash;')+'</td>'+
+            '<td class="cost">'+fmtCost(p.cost)+'</td>'+
+            '<td>'+stageBadge(trackId,p.stage,null,false,p.cost)+(p.stale?'<br><span class="badge stale">&#9888; Re-verify stage</span>':'')+'</td>'+
+            '<td style="font-size:11px;color:var(--muted)">'+(esc(p.stageNote)||'&mdash;')+'</td>'+
+            '<td>'+(vipPill(p.vipRef)||'&mdash;')+'</td>'+
+            '<td style="font-size:11px;color:var(--muted)">'+(esc(p.remark)||'&mdash;')+'</td>'+
+            (canE?'<td style="white-space:nowrap"><button class="btn btn-ghost btn-sm" onclick="openEdit(\''+p.id+'\',\''+trackId+'\')">Edit</button> '+
+              (p.stage<maxStages?'<button class="btn btn-ghost btn-sm" onclick="quickAdvance(\''+p.id+'\',\''+trackId+'\')">&#9654; Next</button> ':
+              (TRACK_SEQUENCE[trackId]!==null?'<button class="btn btn-sm" style="background:#1a5fa8;color:#fff;border-color:#1248a0;font-weight:700" onclick="promoteToNextTrack(\''+p.id+'\',\''+trackId+'\')">'+TRACK_NEXT_LABEL[trackId]+'</button> ':''))+
+              '<button class="btn btn-sm" style="background:#fef3e0;color:#d4820a;border-color:#f5d99a" onclick="quickToggleHold(\''+p.id+'\',\''+trackId+'\',true)">&#9646;&#9646; Hold</button></td>':'')+'</tr>';
+        }).join('')+'</tbody></table></div>';
+    }
+  } else { html+='<div class="empty-state" style="padding:20px"><p>No active entries.</p></div>'; }
+  if(onHold.length){
+    html+='<div style="border-top:1px solid var(--border);padding:8px 14px;background:#fafafa"><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em">&#9646;&#9646; On hold ('+onHold.length+')</div><div class="tw"><table><thead><tr><th>Project</th><th>Agency</th><th>Stage</th><th>VIP Ref.</th><th>Remark</th>'+(canE?'<th></th>':'')+'</tr></thead><tbody>'+
+      onHold.map(p=>'<tr class="on-hold"><td class="pname">'+esc(p.project)+'</td><td class="agt">'+(esc(p.agency)||'&mdash;')+'</td><td>'+stageBadge(trackId,p.stage,null,false,p.cost)+'</td><td>'+(vipPill(p.vipRef)||'&mdash;')+'</td><td style="font-size:11px;color:var(--muted)">'+(esc(p.remark)||'&mdash;')+'</td>'+
+      (canE?'<td style="white-space:nowrap"><button class="btn btn-ghost btn-sm" onclick="openEdit(\''+p.id+'\',\''+trackId+'\')">Edit</button> <button class="btn btn-sm" style="background:#e8f5e9;color:#2d7d46;border-color:#a5d6a7" onclick="quickToggleHold(\''+p.id+'\',\''+trackId+'\',false)">&#9654; Resume</button></td>':'')+'</tr>').join('')+'</tbody></table></div></div>';
+  }
+  return html+'</div>';
+}
+function renderActiveTrackSection(items,officerCode,canE){
+  let html='<div class="section track-active"><div class="track-header"><span class="track-pill" style="background:var(--track-active-bg);color:var(--track-active)">🏗️ Active Projects</span><span class="sec-sub">'+items.length+' item(s)</span><div style="margin-left:auto;display:flex;gap:6px">'+(canE?'<button class="btn btn-sm btn-active" onclick="openAdd(\''+officerCode+'\',\'active\')">+ Add</button>':'')+'</div></div>';
+  if(items.length){
+    html+='<div class="tw"><table id="tbl-active-'+officerCode+'"><thead><tr><th>#</th><th>Fin Year</th><th>Date of Exec</th><th style="min-width:180px">Project Name</th><th>Efile No.</th><th>Value (₹ Lakhs)</th><th>Agency</th><th>Exp (Month)</th><th>Exp (FY)</th><th>Exp (Cum, as on 31-Mar)</th><th>Expected Exp (Rem. FY)</th><th>MoU From</th><th>MoU To</th><th>MoU Ext.</th><th>District</th><th>Block</th><th>Panchayat</th><th>Status</th><th>VIP Ref.</th><th>Remarks</th>'+(canE?'<th></th>':'')+'</tr></thead><tbody>'+
+      items.map((p,i)=>'<tr><td style="color:var(--muted);font-size:11px">'+(i+1)+'</td><td class="text-xs">'+esc(p.finYear)+'</td><td class="text-xs">'+esc(p.mouExec)+'</td><td class="pname">'+esc(p.project)+(p.projectFull?'<div class="text-xs" style="color:var(--muted);font-weight:400;margin-top:2px" title="'+esc(p.projectFull)+'">'+esc(p.projectFull.length>60?p.projectFull.slice(0,60)+'…':p.projectFull)+'</div>':'')+'</td><td class="text-xs" style="color:var(--blue);font-weight:600">'+esc(p.efileNo)+'</td><td class="cost">'+fmtCost(p.cost)+'</td><td class="agt">'+(esc(p.agency)||'&mdash;')+'</td><td class="text-xs">'+esc(p.expMonth)+'</td><td class="text-xs">'+esc(p.expFy)+'</td><td class="text-xs">'+esc(p.expCum)+'</td><td class="text-xs">'+esc(p.expRemainForecast)+'</td><td class="text-xs">'+esc(p.mouStart)+'</td><td class="text-xs">'+esc(p.mouEnd)+'</td><td class="text-xs">'+esc(p.mouExt)+'</td><td class="text-xs">'+esc(p.district)+'</td><td class="text-xs">'+esc(p.block)+'</td><td class="text-xs">'+esc(p.panchayat)+'</td><td class="text-xs">'+esc(p.progStatus)+'</td><td>'+(vipPill(p.vipRef)||'&mdash;')+'</td><td class="text-xs">'+esc(p.remark)+'</td>'+
+      (canE?'<td style="white-space:nowrap"><button class="btn btn-ghost btn-sm" onclick="openEdit(\''+p.id+'\',\'active\')">Edit</button></td>':'')+'</tr>').join('')+'</tbody></table></div>';
+  } else { html+='<div class="empty-state" style="padding:20px"><p>No active entries.</p></div>'; }
+  return html+'</div>';
+}
+
+/* ══════════════════════════════════════════
+   AREA PROJECT CRUD
+   ══════════════════════════════════════════ */
+function getAreaTable(){ return 'area_projects'; }
+function getAreaProjects(areaCode){ return DB.areaProjects.filter(p=>p.areaCode===areaCode); }
+function getAreaTrack(trackId){ return AREA_TRACKS.find(t=>t.id===trackId)||AREA_TRACKS[0]; }
+
+async function persistAreaRow(item){
+  showSaving(true);
+  try{
+    const base={
+      id:item.id, area_code:item.areaCode, track:item.track, stage:item.stage||'',
+      project:item.project||'', project_full:item.projectFull||'', agency:item.agency||'',
+      cost:item.cost||'', district:item.district||'', efile_no:item.efileNo||'',
+      mou_start:item.mouStart||'', mou_end:item.mouEnd||'', mou_execution_date:item.mouExec||'',
+      fin_year:item.finYear||'', exp_current_month:item.expMonth||'', exp_current_fy:item.expFy||'',
+      exp_cumulative:item.expCum||'', exp_remain_forecast:item.expRemainForecast||'',
+      mou_extended:item.mouExt||'', remark:item.remark||'', completed_date:item.completedDate||'',
+      vip_ref:item.vipRef||''
+    };
+    const res=await sbFetch('area_projects',{method:'POST',prefer:'resolution=merge-duplicates,return=minimal',body:JSON.stringify(base),rawRes:true});
+    if(res.status!==200&&res.status!==201&&res.status!==204) throw new Error('HTTP '+res.status);
+    setSyncStatus('ok','Saved · '+new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'}));
+    toast('Saved successfully');
+  }catch(e){ setSyncStatus('err','Save failed'); toast('Could not save: '+e.message,true); }
+  finally{ showSaving(false); }
+}
+
+async function removeAreaRow(id){
+  showSaving(true,'Deleting...');
+  try{
+    const res=await sbFetch('area_projects?id=eq.'+encodeURIComponent(id),{method:'DELETE',rawRes:true});
+    if(res.status!==200&&res.status!==204) throw new Error('HTTP '+res.status);
+    DB.areaProjects=DB.areaProjects.filter(p=>String(p.id)!==String(id));
+    setSyncStatus('ok','Deleted · '+new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'}));
+  }catch(e){ toast('Could not delete.',true); throw e; }
+  finally{ showSaving(false); }
+}
+
+function autoTransitionAreaProject(item){
+  // TCR Approved → Track 3, stage reset
+  if(item.track===2 && item.stage===AREA_TRACK_AWARD_TRIGGER){
+    item.track=3; item.stage='Pending BC Submission';
+  }
+  // Final Bill Paid / Work Completed → Track 5 (Completed)
+  if(item.track===4 && AREA_TRACK_COMPLETED_STAGES.includes(item.stage)){
+    item.track=5; item.completedDate=new Date().toISOString().slice(0,10);
+  }
+  return item;
+}
+
+function openAreaAdd(areaCode, trackId){
+  const track=getAreaTrack(parseInt(trackId)||1);
+  const html=getAreaModalHTML(false,{areaCode:areaCode,track:track.id,stage:track.stages[0]},areaCode);
+  document.getElementById('modal-content').innerHTML=html;
+  document.getElementById('modal-bg').classList.add('open');
+}
+
+function openAreaEdit(id){
+  const item=DB.areaProjects.find(p=>String(p.id)===String(id));
+  if(!item) return;
+  document.getElementById('modal-content').innerHTML=getAreaModalHTML(true,item,item.areaCode);
+  document.getElementById('modal-bg').classList.add('open');
+}
+
+function getAreaModalHTML(isEdit, item, areaCode){
+  const track=getAreaTrack(item.track||1);
+  const isCompleted=item.track===5;
+  const dis=isCompleted?' disabled':'';
+  const stages=track.stages;
+  const needsExpFields=[3,4,5].includes(item.track||1);
+  let html='<span class="modal-handle"></span>';
+  html+=`<h2>${isEdit?'Edit Area Project':'Add Area Project'}</h2>`;
+  html+=`<div style="display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:12px;font-size:11px;font-weight:700;background:${track.bg};color:${track.color};margin-bottom:14px">${track.icon} ${track.label}</div>`;
+  if(isCompleted) html+='<div class="ro-notice">✅ This project is in the Completed archive — read only.</div>';
+  if(!isEdit){
+    html+=`<div class="fg"><label>Track</label><select id="m-area-track" onchange="switchAreaTrackInModal(this.value,'${esc(areaCode)}')">`;
+    AREA_TRACKS.filter(t=>t.id!==5).forEach(t=>{ html+=`<option value="${t.id}"${t.id===(item.track||1)?' selected':''}>${t.icon} ${t.label}</option>`; });
+    html+='</select></div>';
+  }
+  html+=`<div class="fg"><label>Project Name (Short) *</label><input type="text" id="m-project" value="${esc(item.project||'')}" ${dis} placeholder="Short name for dashboard tables"></div>`;
+  html+=`<div class="fg"><label>Project Name (Full)</label><textarea id="m-project-full" ${dis}>${esc(item.projectFull||'')}</textarea></div>`;
+  html+=`<div class="frow"><div class="fg"><label>Implementing Agency</label><input type="text" id="m-agency" value="${esc(item.agency||'')}" ${dis}></div><div class="fg"><label>District</label><input type="text" id="m-district" value="${esc(item.district||'')}" ${dis}></div></div>`;
+  html+=`<div class="frow"><div class="fg"><label>Value (₹ Lakhs)</label><input type="number" step="0.01" id="m-cost" value="${esc(item.cost||'')}" ${dis}></div><div class="fg"><label>E-File No.</label><input type="text" id="m-efile-no" value="${esc(item.efileNo||'')}" ${dis}></div></div>`;
+  html+=`<div class="frow"><div class="fg"><label>Financial Year</label><input type="text" id="m-fin-year" value="${esc(item.finYear||'')}" ${dis}></div><div class="fg"><label>Date of Execution</label><input type="text" id="m-mou-exec" value="${esc(item.mouExec||'')}" ${dis}></div></div>`;
+  if(isEdit){
+    html+=`<div class="fg"><label>Stage</label><select id="m-area-stage" ${dis}>${stages.map(s=>`<option value="${esc(s)}"${s===item.stage?' selected':''}>${esc(s)}</option>`).join('')}</select></div>`;
+  }
+  if(needsExpFields){
+    html+=`<div class="frow"><div class="fg"><label>Exp. Current Month</label><input type="text" id="m-exp-month" value="${esc(item.expMonth||'')}" ${dis}></div><div class="fg"><label>Exp. Current FY</label><input type="text" id="m-exp-fy" value="${esc(item.expFy||'')}" ${dis}></div></div>`;
+    html+=`<div class="frow"><div class="fg"><label>Cum. Expenditure (31-Mar)</label><input type="text" id="m-exp-cum" value="${esc(item.expCum||'')}" ${dis}></div><div class="fg"><label>Expected Exp. (Rem. FY)</label><input type="number" step="0.01" id="m-exp-remain-forecast" value="${esc(item.expRemainForecast||'')}" ${dis}></div></div>`;
+    html+=`<div class="frow"><div class="fg"><label>MoU From</label><input type="text" id="m-mou-start" value="${esc(item.mouStart||'')}" ${dis}></div><div class="fg"><label>MoU To</label><input type="text" id="m-mou-end" value="${esc(item.mouEnd||'')}" ${dis}></div></div>`;
+    html+=`<div class="frow"><div class="fg"><label>MoU Extended Upto</label><input type="text" id="m-mou-ext" value="${esc(item.mouExt||'')}" ${dis}></div><div class="fg"><label>VIP Reference</label><input type="text" id="m-vipref" value="${esc(item.vipRef||'')}" ${dis}></div></div>`;
+  }
+  html+=`<div class="fg"><label>Remarks</label><textarea id="m-remark" ${dis}>${esc(item.remark||'')}</textarea></div>`;
+  html+='<div class="modal-actions">';
+  if(isEdit&&!isCompleted) html+=`<button class="btn btn-del" onclick="delAreaItem('${item.id}')">Delete</button>`;
+  html+=`<button class="btn btn-ghost" onclick="closeModal()">${isEdit?'Close':'Cancel'}</button>`;
+  if(!isCompleted) html+=`<button class="btn btn-acc" onclick="${isEdit?`saveAreaEdit('${item.id}')`:'saveAreaNew()'}">Save</button>`;
+  html+='</div>';
+  return html;
+}
+
+function switchAreaTrackInModal(trackId, areaCode){
+  const track=getAreaTrack(parseInt(trackId));
+  openAreaAdd(areaCode, parseInt(trackId));
+}
+
+function saveAreaNew(){
+  const project=(document.getElementById('m-project')||{}).value?.trim();
+  if(!project){ toast('Project name is required.',true); return; }
+  const trackEl=document.getElementById('m-area-track');
+  const trackId=trackEl?parseInt(trackEl.value):1;
+  const track=getAreaTrack(trackId);
+  let item={
+    id:genId('ap'), areaCode:currentUser, track:trackId,
+    stage:track.stages[0], project:project,
+    projectFull:(document.getElementById('m-project-full')||{}).value?.trim()||'',
+    agency:(document.getElementById('m-agency')||{}).value?.trim()||'',
+    district:(document.getElementById('m-district')||{}).value?.trim()||'',
+    cost:(document.getElementById('m-cost')||{}).value||'',
+    efileNo:(document.getElementById('m-efile-no')||{}).value?.trim()||'',
+    finYear:(document.getElementById('m-fin-year')||{}).value?.trim()||'',
+    mouExec:(document.getElementById('m-mou-exec')||{}).value?.trim()||'',
+    expMonth:(document.getElementById('m-exp-month')||{}).value?.trim()||'',
+    expFy:(document.getElementById('m-exp-fy')||{}).value?.trim()||'',
+    expCum:(document.getElementById('m-exp-cum')||{}).value?.trim()||'',
+    expRemainForecast:(document.getElementById('m-exp-remain-forecast')||{}).value||'',
+    mouStart:(document.getElementById('m-mou-start')||{}).value?.trim()||'',
+    mouEnd:(document.getElementById('m-mou-end')||{}).value?.trim()||'',
+    mouExt:(document.getElementById('m-mou-ext')||{}).value?.trim()||'',
+    vipRef:(document.getElementById('m-vipref')||{}).value?.trim()||'',
+    remark:(document.getElementById('m-remark')||{}).value?.trim()||'',
+    completedDate:''
+  };
+  DB.areaProjects.push(item);
+  persistAreaRow(item);
+  closeModal();
+  showPage(currentUser);
+}
+
+function saveAreaEdit(id){
+  const idx=DB.areaProjects.findIndex(p=>String(p.id)===String(id));
+  if(idx<0) return;
+  const p=DB.areaProjects[idx];
+  const stageEl=document.getElementById('m-area-stage');
+  const newStage=stageEl?stageEl.value:p.stage;
+  DB.areaProjects[idx]={...p,
+    project:(document.getElementById('m-project')||{}).value?.trim()||p.project,
+    projectFull:(document.getElementById('m-project-full')||{}).value?.trim()||'',
+    agency:(document.getElementById('m-agency')||{}).value?.trim()||'',
+    district:(document.getElementById('m-district')||{}).value?.trim()||'',
+    cost:(document.getElementById('m-cost')||{}).value||p.cost,
+    efileNo:(document.getElementById('m-efile-no')||{}).value?.trim()||'',
+    finYear:(document.getElementById('m-fin-year')||{}).value?.trim()||'',
+    mouExec:(document.getElementById('m-mou-exec')||{}).value?.trim()||'',
+    expMonth:(document.getElementById('m-exp-month')||{}).value?.trim()||'',
+    expFy:(document.getElementById('m-exp-fy')||{}).value?.trim()||'',
+    expCum:(document.getElementById('m-exp-cum')||{}).value?.trim()||'',
+    expRemainForecast:(document.getElementById('m-exp-remain-forecast')||{}).value||'',
+    mouStart:(document.getElementById('m-mou-start')||{}).value?.trim()||'',
+    mouEnd:(document.getElementById('m-mou-end')||{}).value?.trim()||'',
+    mouExt:(document.getElementById('m-mou-ext')||{}).value?.trim()||'',
+    vipRef:(document.getElementById('m-vipref')||{}).value?.trim()||'',
+    remark:(document.getElementById('m-remark')||{}).value?.trim()||'',
+    stage:newStage
+  };
+  DB.areaProjects[idx]=autoTransitionAreaProject(DB.areaProjects[idx]);
+  persistAreaRow(DB.areaProjects[idx]);
+  closeModal();
+  showPage(currentUser);
+}
+
+function areaAdvanceStage(id){
+  const idx=DB.areaProjects.findIndex(p=>String(p.id)===String(id));
+  if(idx<0) return;
+  const item=DB.areaProjects[idx];
+  if(item.track===5) return; // locked
+  const track=getAreaTrack(item.track);
+  const si=track.stages.indexOf(item.stage);
+  if(si>=0 && si<track.stages.length-1){
+    item.stage=track.stages[si+1];
+  }
+  DB.areaProjects[idx]=autoTransitionAreaProject(item);
+  persistAreaRow(DB.areaProjects[idx]);
+  toast('Advanced to: '+DB.areaProjects[idx].stage);
+  showPage(currentUser);
+}
+
+async function delAreaItem(id){
+  if(!confirm('Delete this project permanently?')) return;
+  await removeAreaRow(id);
+  closeModal();
+  toast('Entry deleted');
+  showPage(currentUser);
+}
+
+/* ══════════════════════════════════════════
+   AREA DASHBOARD — 5-track view (shown to area officers on login)
+   ══════════════════════════════════════════ */
+function getAreaStats(areaCode){
+  const projects=getAreaProjects(areaCode);
+  const byTrack=t=>projects.filter(p=>p.track===t);
+  return { total:projects.length, pipeline:byTrack(1).length, tendered:byTrack(2).length,
+    toAward:byTrack(3).length, active:byTrack(4).length, completed:byTrack(5).length };
+}
+function renderAreaStatsRow(areaCode){
+  const s=getAreaStats(areaCode);
+  return `<div class="stats-row">
+    <div class="stat acc"><div class="lbl">Total</div><div class="val">${s.total}</div></div>
+    <div class="stat blu"><div class="lbl">📋 Pipeline</div><div class="val">${s.pipeline}</div></div>
+    <div class="stat prp"><div class="lbl">📄 Tendered</div><div class="val">${s.tendered}</div></div>
+    <div class="stat" style="border-left:3px solid var(--amber)"><div class="lbl">🏆 To Award</div><div class="val">${s.toAward}</div></div>
+    <div class="stat grn"><div class="lbl">🏗️ Active</div><div class="val">${s.active}</div></div>
+    <div class="stat" style="border-left:3px solid #374151"><div class="lbl">✅ Completed</div><div class="val">${s.completed}</div></div>
+  </div>`;
+}
+/* Shared by both the Area's own login (renderAreaDashboard) and HQ's
+   "Areas" drill-down (renderAreasPage) — single source of truth so the
+   two views can never show different data or different stage labels again. */
+function renderAreaTrackSections(areaCode, canE){
+  const projects=getAreaProjects(areaCode);
+  const byTrack=t=>projects.filter(p=>p.track===t);
+  let html='';
+  AREA_TRACKS.forEach(track=>{
+    const items=byTrack(track.id);
+    const isCompleted=track.id===5;
+    html+=`<div class="section" style="border-top:3px solid ${track.color}">
+      <div class="track-header">
+        <span class="track-pill" style="background:${track.bg};color:${track.color}">${track.icon} ${track.label}</span>
+        <span class="sec-sub">${items.length} item(s)</span>
+        <div style="margin-left:auto;display:flex;gap:6px">`;
+    if(canE && !isCompleted) html+=`<button class="btn btn-sm" style="background:${track.bg};color:${track.color};border-color:${track.color}" onclick="openAreaAdd('${areaCode}',${track.id})">+ Add</button>`;
+    html+=`</div></div>`;
+
+    if(items.length){
+      html+='<div class="tw"><table>';
+      if(track.id<=2){
+        html+='<thead><tr><th>#</th><th>Project</th><th>Agency</th><th>District</th><th>Cost (₹L)</th><th>Stage</th><th>Remarks</th>'+(canE&&!isCompleted?'<th></th>':'')+'</tr></thead><tbody>';
+        html+=items.map((p,i)=>{
+          const si=track.stages.indexOf(p.stage);
+          const maxSi=track.stages.length-1;
+          return `<tr><td style="color:var(--muted);font-size:11px">${i+1}</td>
+            <td class="pname">${esc(p.project)}${p.projectFull?`<div class="text-xs" style="color:var(--muted);font-weight:400;margin-top:2px">${esc(p.projectFull.length>50?p.projectFull.slice(0,50)+'…':p.projectFull)}</div>`:''}</td>
+            <td class="agt">${esc(p.agency)||'&mdash;'}</td>
+            <td class="text-xs">${esc(p.district)||'&mdash;'}</td>
+            <td class="cost">${fmtCost(p.cost)}</td>
+            <td><span class="badge" style="background:${track.bg};color:${track.color}">${esc(p.stage)||'&mdash;'}</span></td>
+            <td class="text-xs">${esc(p.remark)||'&mdash;'}</td>
+            ${canE?`<td style="white-space:nowrap">
+              <button class="btn btn-ghost btn-sm" onclick="openAreaEdit('${p.id}')">Edit</button>
+              ${si<maxSi?`<button class="btn btn-ghost btn-sm" onclick="areaAdvanceStage('${p.id}')">&#9654; Next</button>`:''}
+            </td>`:''}
+          </tr>`;
+        }).join('');
+      } else if(track.id===3){
+        html+='<thead><tr><th>#</th><th>Project</th><th>Agency</th><th>Cost (₹L)</th><th>E-File No.</th><th>Stage</th><th>Remarks</th>'+(canE?'<th></th>':'')+'</tr></thead><tbody>';
+        html+=items.map((p,i)=>{
+          const si=track.stages.indexOf(p.stage);
+          const maxSi=track.stages.length-1;
+          return `<tr><td style="color:var(--muted);font-size:11px">${i+1}</td>
+            <td class="pname">${esc(p.project)}</td>
+            <td class="agt">${esc(p.agency)||'&mdash;'}</td>
+            <td class="cost">${fmtCost(p.cost)}</td>
+            <td class="text-xs" style="color:var(--blue);font-weight:600">${esc(p.efileNo)||'&mdash;'}</td>
+            <td><span class="badge" style="background:${track.bg};color:${track.color}">${esc(p.stage)||'&mdash;'}</span></td>
+            <td class="text-xs">${esc(p.remark)||'&mdash;'}</td>
+            ${canE?`<td style="white-space:nowrap">
+              <button class="btn btn-ghost btn-sm" onclick="openAreaEdit('${p.id}')">Edit</button>
+              ${si<maxSi?`<button class="btn btn-ghost btn-sm" onclick="areaAdvanceStage('${p.id}')">&#9654; Next</button>`:''}
+            </td>`:''}
+          </tr>`;
+        }).join('');
+      } else {
+        // Track 4 & 5 — full expenditure columns
+        html+='<thead><tr><th>#</th><th>Fin Year</th><th>Date of Exec</th><th style="min-width:160px">Project</th><th>E-File No.</th><th>Value (₹L)</th><th>Agency</th><th>Exp (Month)</th><th>Exp (FY)</th><th>Exp (Cum)</th><th>Exp (Rem. FY)</th><th>MoU From</th><th>MoU To</th><th>District</th><th>Stage</th><th>Remarks</th>'+(canE&&!isCompleted?'<th></th>':'')+'</tr></thead><tbody>';
+        html+=items.map((p,i)=>{
+          const si=track.stages.indexOf(p.stage);
+          const maxSi=track.stages.length-1;
+          return `<tr><td style="color:var(--muted);font-size:11px">${i+1}</td>
+            <td class="text-xs">${esc(p.finYear)}</td>
+            <td class="text-xs">${esc(p.mouExec)}</td>
+            <td class="pname">${esc(p.project)}</td>
+            <td class="text-xs" style="color:var(--blue);font-weight:600">${esc(p.efileNo)}</td>
+            <td class="cost">${fmtCost(p.cost)}</td>
+            <td class="agt">${esc(p.agency)||'&mdash;'}</td>
+            <td class="text-xs">${esc(p.expMonth)}</td>
+            <td class="text-xs">${esc(p.expFy)}</td>
+            <td class="text-xs">${esc(p.expCum)}</td>
+            <td class="text-xs">${esc(p.expRemainForecast)}</td>
+            <td class="text-xs">${esc(p.mouStart)}</td>
+            <td class="text-xs">${esc(p.mouEnd)}</td>
+            <td class="text-xs">${esc(p.district)}</td>
+            <td><span class="badge" style="background:${track.bg};color:${track.color}">${esc(p.stage)||'&mdash;'}</span>${isCompleted&&p.completedDate?`<div class="text-xs" style="color:var(--muted);margin-top:2px">${esc(p.completedDate)}</div>`:''}</td>
+            <td class="text-xs">${esc(p.remark)}</td>
+            ${canE&&!isCompleted?`<td style="white-space:nowrap">
+              <button class="btn btn-ghost btn-sm" onclick="openAreaEdit('${p.id}')">Edit</button>
+              ${si<maxSi?`<button class="btn btn-ghost btn-sm" onclick="areaAdvanceStage('${p.id}')">&#9654; Next</button>`:''}
+            </td>`:''}
+          </tr>`;
+        }).join('');
+      }
+      html+='</tbody></table></div>';
+    } else {
+      html+='<div class="empty-state" style="padding:20px"><p>No entries in this track.</p></div>';
+    }
+    html+='</div>'; // close section
+  });
+
+  return html;
+}
+
+function renderAreaDashboard(areaCode){
+  const area=AREAS.find(a=>a.code===areaCode);
+  if(!area) return '<div class="page active"><p style="padding:20px;color:var(--muted)">Area not found.</p></div>';
+  const canE=canEdit(areaCode);
+  let html=`<div class="page active">
+  <div class="page-header">
+    <div style="display:flex;align-items:center;gap:10px">${av(areaCode,true)}<div>
+      <h1>${esc(area.name)}</h1>
+      <p>Area 5-Track CSR Dashboard &middot; FY 2026-27</p>
+    </div></div>
+    <div class="page-header-actions">
+      <button class="btn" onclick="exportAreaMonthlyReport('${areaCode}')" style="background:#1e7e34;color:#fff;border-color:#155d27;font-weight:700">&#8681; Monthly Report</button>
+      <button class="btn btn-ghost" onclick="initApp()">&#8635; Refresh</button>
+    </div>
+  </div>`;
+  html+=renderAreaStatsRow(areaCode);
+  html+=renderAreaTrackSections(areaCode, canE);
+  return html+'</div>';
+}
+
+/* Area Monthly Report Export — 2-sheet Excel */
+function exportAreaMonthlyReport(areaCode){
+  withXLSX(XLSX=>{
+    const area=AREAS.find(a=>a.code===areaCode);
+    const projects=getAreaProjects(areaCode);
+    const wb=XLSX.utils.book_new();
+
+    // Sheet 1: New Activities (Track 1,2,3)
+    const newHeads=['S.No.','Project Name','Project Name (Full)','Agency','District','Cost (₹ Lakhs)','E-File No.','Track','Stage','Remarks'];
+    const newRows=projects.filter(p=>p.track>=1&&p.track<=3).map((p,i)=>[
+      i+1, p.project||'', p.projectFull||'', p.agency||'', p.district||'',
+      p.cost||'', p.efileNo||'', getAreaTrack(p.track).label, p.stage||'', p.remark||''
+    ]);
+    XLSX.utils.book_append_sheet(wb, makeSheet(XLSX,newHeads,newRows), 'New Activities');
+
+    // Sheet 2: Commenced Activities (Track 4 & 5)
+    const commHeads=['S.No.','Fin. Year','Date of Execution','Project Name','Project Name (Full)','E-File No.',
+      'Value (₹ Lakhs)','Agency','Exp. (Current Month)','Exp. (Current FY)',
+      'Cum. Exp. (till 31-Mar)','Expected Exp. (Rem. FY)','MoU From','MoU To',
+      'MoU Extended Upto','District','Stage/Status','Remarks'];
+    const commRows=projects.filter(p=>p.track>=4).map((p,i)=>[
+      i+1, p.finYear||'', p.mouExec||'', p.project||'', p.projectFull||'', p.efileNo||'',
+      p.cost||'', p.agency||'', p.expMonth||'', p.expFy||'', p.expCum||'',
+      p.expRemainForecast||'', p.mouStart||'', p.mouEnd||'', p.mouExt||'',
+      p.district||'', p.stage||'', p.remark||''
+    ]);
+    XLSX.utils.book_append_sheet(wb, makeSheet(XLSX,commHeads,commRows), 'Commenced Activities');
+
+    const mn=new Date().toLocaleString('en-IN',{month:'short',year:'numeric'}).replace(' ','-');
+    XLSX.writeFile(wb,'CCL_CSR_'+areaCode+'_Monthly_'+mn+'.xlsx');
+  });
+}
+
+/* ══════════════════════════════════════════
+   AREAS PAGE
+   ══════════════════════════════════════════ */
+function selectArea(code){ window._selectedArea=code; showPage('areas'); }
+function renderAreasPage(){
+  const selected=window._selectedArea||'';
+  const aRows=AREAS.map(a=>({a, ...getAreaStats(a.code)}));
+  const maxLoad=Math.max(...aRows.map(r=>r.pipeline+r.tendered+r.toAward+r.active+r.completed),1);
+  let html='<div class="page active"><div class="page-header"><div><h1>🏘️ Area Offices</h1><p>All '+AREAS.length+' area offices &middot; CCL CSR Division &middot; same 5-track view areas see on their own login</p></div></div>';
+  html+='<div class="section"><div class="sec-hdr"><span class="sec-title">Area workload (5-track)</span></div><div class="tw"><table><thead><tr><th>Area</th><th>📋 Pipeline</th><th>📄 Tendered</th><th>🏆 To Award</th><th>🏗️ Active</th><th>✅ Completed</th><th>Load</th></tr></thead><tbody>'+
+    aRows.map(({a,pipeline,tendered,toAward,active,completed})=>'<tr><td><div style="display:flex;align-items:center;gap:8px">'+av(a.code)+'<div><div style="font-weight:700;font-size:12px">'+esc(a.name)+'</div><span style="font-size:11px;color:var(--blue);cursor:pointer" onclick="selectArea(\''+a.code+'\')">'+a.code+' &rarr;</span></div></div></td>'+
+    '<td>'+(pipeline?'<strong>'+pipeline+'</strong>':'&mdash;')+'</td>'+
+    '<td>'+(tendered?'<span class="badge" style="background:var(--track-area2-bg);color:var(--track-area2)">'+tendered+'</span>':'&mdash;')+'</td>'+
+    '<td>'+(toAward?'<span class="badge" style="background:var(--track-area3-bg);color:var(--track-area3)">'+toAward+'</span>':'&mdash;')+'</td>'+
+    '<td>'+(active?'<span class="badge" style="background:var(--track-area4-bg);color:var(--track-area4)">'+active+'</span>':'&mdash;')+'</td>'+
+    '<td>'+(completed?'<span class="badge" style="background:var(--track-area5-bg);color:var(--track-area5)">'+completed+'</span>':'&mdash;')+'</td>'+
+    '<td><div class="pbar"><div class="pbar-fill" style="width:'+Math.round(((pipeline+tendered+toAward+active+completed)/maxLoad)*100)+'%;background:'+dotColor(a.code)+'"></div></div></td></tr>').join('')+'</tbody></table></div></div>';
+  html+='<div class="section"><div class="sec-hdr"><span class="sec-title">View area detail</span></div><div style="padding:14px"><select id="area-picker" onchange="selectArea(this.value)" style="max-width:340px;padding:10px;border:1px solid var(--border);border-radius:8px;font-size:14px"><option value="">&#8212; Select an area &#8212;</option>'+AREAS.map(a=>'<option value="'+a.code+'"'+(selected===a.code?' selected':'')+'>'+esc(a.name)+' ('+a.code+')</option>').join('')+'</select></div></div>';
+  if(selected){
+    const area=AREAS.find(a=>a.code===selected);
+    if(area){
+      const canE=canEdit(selected);
+      html+='<div class="page-header" style="margin-top:4px"><div style="display:flex;align-items:center;gap:10px">'+av(selected,true)+'<div><h1 style="font-size:16px">'+esc(area.name)+'</h1><p>'+(canE?'<strong style="color:var(--green)">Edit access</strong>':'<span style="color:var(--muted)">View only</span>')+'</p></div></div><div class="page-header-actions"><button class="btn" onclick="exportAreaMonthlyReport(\''+selected+'\')" style="background:#1e7e34;color:#fff;border-color:#155d27;font-weight:700">&#8681; Monthly Report</button></div></div>';
+      html+=renderAreaStatsRow(selected);
+      html+=renderAreaTrackSections(selected, canE);
+    }
+  }
+  return html+'</div>';
+}
+
+/* ══════════════════════════════════════════
+   VIP PAGE
+   ══════════════════════════════════════════ */
+function getVipDignitaries(){ const allItems=[...DB.pipeline,...DB.efiles,...DB.mous,...DB.active]; const map={}; allItems.forEach(p=>{ if(!p.vipRef) return; if(!map[p.vipRef]) map[p.vipRef]={name:p.vipRef,pipeline:0,efile:0,mou:0,active:0,holdCount:0,cost:0}; map[p.vipRef][p.type]++; if(p.hold) map[p.vipRef].holdCount++; const c=parseFloat(p.cost); if(Number.isFinite(c)) map[p.vipRef].cost+=c; }); return Object.values(map).sort((a,b)=>(b.pipeline+b.efile+b.mou+b.active)-(a.pipeline+a.efile+a.mou+a.active)); }
+function selectVip(name){ window._selectedVip=name; showPage('vip'); }
+function renderVipPage(){
+  const selected=window._selectedVip||''; const dignitaries=getVipDignitaries(); const totalLinked=dignitaries.reduce((s,d)=>s+d.pipeline+d.efile+d.mou+d.active,0); const maxLoad=Math.max(...dignitaries.map(d=>d.pipeline+d.efile+d.mou+d.active),1);
+  let html='<div class="page active"><div class="page-header"><div><h1>⭐ VIP Reference Projects</h1><p>'+dignitaries.length+' dignitaries / referring offices &middot; '+totalLinked+' linked project(s) across all tracks</p></div><div class="page-header-actions"><button class="btn" onclick="exportVipXLSX()" style="background:#1e7e34;color:#fff;border-color:#155d27;font-weight:700">&#8681; Excel VIP</button></div></div>';
+  if(!dignitaries.length){ html+='<div class="section"><div class="empty-state"><div class="es-icon">⭐</div><p>No projects tagged with a VIP reference yet.</p></div></div>'; return html+'</div>'; }
+  html+='<div class="section"><div class="sec-hdr"><span class="sec-title">VIP / dignitary workload</span></div><div class="tw"><table><thead><tr><th>Dignitary / Office</th><th>Pipeline</th><th>E-Files</th><th>MoU</th><th>Active</th><th>On hold</th><th>Total cost</th><th>Load</th></tr></thead><tbody>'+
+    dignitaries.map(d=>{ const total=d.pipeline+d.efile+d.mou+d.active; return '<tr style="cursor:pointer" onclick="selectVip('+JSON.stringify(d.name).replace(/"/g,'&quot;')+')"><td><div style="font-weight:700;font-size:12px;color:var(--blue)">⭐ '+esc(d.name)+'</div></td><td><strong>'+(d.pipeline||'&mdash;')+'</strong></td><td>'+(d.efile?'<span class="badge ep1">'+d.efile+'</span>':'&mdash;')+'</td><td>'+(d.mou?'<span class="badge mp1">'+d.mou+'</span>':'&mdash;')+'</td><td>'+(d.active?'<span class="badge" style="background:var(--track-active-bg);color:var(--track-active)">'+d.active+'</span>':'&mdash;')+'</td><td>'+(d.holdCount?'<span class="badge bhold">'+d.holdCount+'</span>':'&mdash;')+'</td><td style="font-size:11px">&#8377;'+d.cost.toFixed(2)+'L</td><td><div class="pbar"><div class="pbar-fill" style="width:'+Math.round((total/maxLoad)*100)+'%;background:var(--accent)"></div></div></td></tr>'; }).join('')+'</tbody></table></div></div>';
+  html+='<div class="section"><div class="sec-hdr"><span class="sec-title">View dignitary detail</span></div><div style="padding:14px"><select id="vip-picker" onchange="selectVip(this.value)" style="max-width:420px;padding:10px;border:1px solid var(--border);border-radius:8px;font-size:14px"><option value="">&#8212; Select a dignitary / office &#8212;</option>'+dignitaries.map(d=>'<option value="'+esc(d.name)+'"'+(selected===d.name?' selected':'')+'>'+esc(d.name)+' ('+(d.pipeline+d.efile+d.mou+d.active)+')</option>').join('')+'</select></div></div>';
+  if(selected){ const allItems=[...DB.pipeline,...DB.efiles,...DB.mous,...DB.active]; const items=allItems.filter(p=>p.vipRef===selected); const pipeline=items.filter(p=>p.type==='pipeline'); const efiles=items.filter(p=>p.type==='efile'); const mous=items.filter(p=>p.type==='mou'); const active=items.filter(p=>p.type==='active'); const canE=currentUser==='GM'||currentUser==='ADMIN'; html+='<div class="page-header" style="margin-top:4px"><div><h1 style="font-size:16px">⭐ '+esc(selected)+'</h1><p>'+items.length+' project(s) linked</p></div></div>'; html+='<div class="stats-row"><div class="stat blu"><div class="lbl">Pipeline</div><div class="val">'+pipeline.filter(p=>!p.hold).length+'</div></div><div class="stat prp"><div class="lbl">E-Files</div><div class="val">'+efiles.filter(e=>!e.hold).length+'</div></div><div class="stat tel"><div class="lbl">MoU</div><div class="val">'+mous.filter(m=>!m.hold).length+'</div></div><div class="stat grn" style="border-left:3px solid var(--track-active)"><div class="lbl">Active</div><div class="val">'+active.length+'</div></div></div>'; [pipeline,efiles,mous].forEach((arr,idx)=>{ const trackId=['pipeline','efile','mou'][idx]; html+=renderVipTrackSection(trackId,arr,canE); }); html+=renderActiveTrackSection(active,'__vip__',false); if(!items.length){ html+='<div class="section"><div class="empty-state"><div class="es-icon">📂</div><p>No projects found.</p></div></div>'; } }
+  return html+'</div>';
+}
+function renderVipTrackSection(trackId,items,canE){ const track=TRACKS[trackId]; const act=items.filter(p=>!p.hold); const onHold=items.filter(p=>p.hold); let html='<div class="section track-'+trackId+'"><div class="track-header"><span class="track-pill">'+track.icon+' '+track.label+'</span><span class="sec-sub">'+items.length+' item(s)</span></div>'; if(act.length){ html+='<div class="tw"><table><thead><tr><th>#</th><th>Project</th><th>Agency</th><th>Officer</th><th>Cost</th><th>Stage</th><th>Remarks</th>'+(canE?'<th></th>':'')+'</tr></thead><tbody>'+act.map((p,i)=>'<tr><td style="color:var(--muted);font-size:11px">'+(i+1)+'</td><td class="pname">'+esc(p.project)+'</td><td class="agt">'+(esc(p.agency)||'&mdash;')+'</td><td>'+(p.officer?av(p.officer):'<span class="badge bhold">Unassigned</span>')+'</td><td class="cost">'+fmtCost(p.cost)+'</td><td>'+stageBadge(trackId,p.stage,null,false,p.cost)+'</td><td style="font-size:11px;color:var(--muted)">'+(esc(p.remark)||'&mdash;')+'</td>'+(canE?'<td style="white-space:nowrap"><button class="btn btn-ghost btn-sm" onclick="openEdit(\''+p.id+'\',\''+trackId+'\')">Edit</button></td>':'')+'</tr>').join('')+'</tbody></table></div>'; } else { html+='<div class="empty-state" style="padding:16px"><p>No active entries.</p></div>'; } if(onHold.length){ html+='<div style="border-top:1px solid var(--border);padding:8px 14px;background:#fafafa"><div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em">&#9646;&#9646; On hold ('+onHold.length+')</div><div class="tw"><table><thead><tr><th>Project</th><th>Officer</th><th>Remark</th>'+(canE?'<th></th>':'')+'</tr></thead><tbody>'+onHold.map(p=>'<tr class="on-hold"><td class="pname">'+esc(p.project)+'</td><td>'+(p.officer?av(p.officer):'<span class="badge bhold">Unassigned</span>')+'</td><td style="font-size:11px;color:var(--muted)">'+(esc(p.remark)||'&mdash;')+'</td>'+(canE?'<td style="white-space:nowrap"><button class="btn btn-ghost btn-sm" onclick="openEdit(\''+p.id+'\',\''+trackId+'\')">Edit</button></td>':'')+'</tr>').join('')+'</tbody></table></div></div>'; } return html+'</div>'; }
+/* ══════════════════════════════════════════
+   EXPENDITURE MONITOR
+   Row 1 = HQ (combined total of all 7 HQ officers' Active Projects).
+   Rows 2-16 = the 15 Area offices.
+   Col4 = expenditure booked till 31-Mar-2026 (prior-FY closing balance, expCum).
+   Col5 = Col3 (Cost) − Col4.
+   Col6 = expenditure booked so far in the current FY (expFy).
+   Col7 = officer-entered forecast for remaining FY (expRemainForecast).
+   Col8 = Col6 + Col7.
+   ══════════════════════════════════════════ */
+function calcExpRow(items){
+  const count=items.length;
+  const cost=items.reduce((s,p)=>s+numVal(p.cost),0);
+  const expCum=items.reduce((s,p)=>s+numVal(p.expCum),0);
+  const remaining=cost-expCum;
+  const expFy=items.reduce((s,p)=>s+numVal(p.expFy),0);
+  const forecast=items.reduce((s,p)=>s+numVal(p.expRemainForecast),0);
+  const annual=expFy+forecast;
+  return {count,cost,expCum,remaining,expFy,forecast,annual};
+}
+function getExpenditureRows(){
+  const hqCodes=new Set(OFFICERS.map(o=>o.code));
+  const rows=[{code:'HQ',name:'HQ (All 7 Officers)',items:DB.active.filter(p=>hqCodes.has(p.officer))}];
+  AREAS.forEach(a=>{ rows.push({code:a.code,name:a.name,items:DB.active.filter(p=>p.officer===a.code)}); });
+  return rows.map(r=>({...r,...calcExpRow(r.items)}));
+}
+function selectExpArea(code){ window._selectedExpArea=code; showPage('expenditure'); }
+function expStat(cls,label,val){ return '<div class="stat '+cls+'"><div class="lbl">'+esc(label)+'</div><div class="val" style="font-size:18px">'+val+'</div></div>'; }
+function renderExpenditurePage(){
+  const rows=getExpenditureRows();
+  const t=rows.reduce((a,r)=>({count:a.count+r.count,cost:a.cost+r.cost,expCum:a.expCum+r.expCum,remaining:a.remaining+r.remaining,expFy:a.expFy+r.expFy,forecast:a.forecast+r.forecast,annual:a.annual+r.annual}),{count:0,cost:0,expCum:0,remaining:0,expFy:0,forecast:0,annual:0});
+  let html='<div class="page active"><div class="page-header"><div><h1>💰 Expenditure Monitor</h1><p>Active Projects expenditure &middot; HQ + all 15 Areas &middot; FY 2026-27</p></div><div class="page-header-actions"><button class="btn btn-ghost" onclick="initApp()">&#8635; Refresh</button></div></div>';
+  html+='<div class="stats-row">'
+    +expStat('acc','Active Projects',t.count)
+    +expStat('blu','Total Project Cost',fmtAmt(t.cost))
+    +expStat('prp','Exp. Booked (till 31-Mar)',fmtAmt(t.expCum))
+    +expStat('tel','Expenditure Remaining',fmtAmt(t.remaining))
+    +expStat('grn','Exp. Booked (Current FY)',fmtAmt(t.expFy))
+    +expStat('red','Expected Exp. (Rem. FY)',fmtAmt(t.forecast))
+    +expStat('acc','Annual Expected Exp.',fmtAmt(t.annual))
+    +'</div>';
+  html+='<div class="section"><div class="sec-hdr"><span class="sec-title">Expenditure by HQ &amp; Area</span><span class="sec-sub">16 rows &middot; figures in &#8377; Lakhs</span></div><div class="tw"><table><thead><tr><th>#</th><th>HQ / Area</th><th>Active Projects</th><th>Project Cost</th><th>Exp. Booked (till 31-Mar)</th><th>Exp. Remaining</th><th>Exp. Booked (Current FY)</th><th>Expected Exp. (Rem. FY)</th><th>Annual Expected Exp.</th></tr></thead><tbody>'
+    +rows.map((r,i)=>'<tr><td style="color:var(--muted);font-size:11px">'+(i+1)+'</td><td><div style="display:flex;align-items:center;gap:8px">'+av(r.code)+'<span style="font-weight:700;font-size:12px;color:var(--blue);cursor:pointer" onclick="selectExpArea(\''+r.code+'\')">'+esc(r.name)+'</span></div></td><td><strong>'+r.count+'</strong></td><td class="cost">'+fmtAmt(r.cost)+'</td><td class="cost">'+fmtAmt(r.expCum)+'</td><td class="cost" style="'+(r.remaining<0?'color:var(--red);font-weight:600':'')+'">'+fmtAmt(r.remaining)+'</td><td class="cost">'+fmtAmt(r.expFy)+'</td><td class="cost">'+fmtAmt(r.forecast)+'</td><td class="cost" style="font-weight:700">'+fmtAmt(r.annual)+'</td></tr>').join('')
+    +'</tbody><tfoot><tr style="background:#f9fafb;font-weight:700"><td></td><td>Total (16 rows)</td><td>'+t.count+'</td><td class="cost">'+fmtAmt(t.cost)+'</td><td class="cost">'+fmtAmt(t.expCum)+'</td><td class="cost">'+fmtAmt(t.remaining)+'</td><td class="cost">'+fmtAmt(t.expFy)+'</td><td class="cost">'+fmtAmt(t.forecast)+'</td><td class="cost">'+fmtAmt(t.annual)+'</td></tr></tfoot></table></div></div>';
+  const selected=window._selectedExpArea||'';
+  html+='<div class="section"><div class="sec-hdr"><span class="sec-title">View details of Expected Expenditure</span></div><div style="padding:14px"><select id="exp-picker" onchange="selectExpArea(this.value)" style="max-width:340px;padding:10px;border:1px solid var(--border);border-radius:8px;font-size:14px"><option value="">&#8212; Select HQ or an Area &#8212;</option><option value="HQ"'+(selected==='HQ'?' selected':'')+'>HQ (All 7 Officers)</option>'+AREAS.map(a=>'<option value="'+a.code+'"'+(selected===a.code?' selected':'')+'>'+esc(a.name)+' ('+a.code+')</option>').join('')+'</select></div></div>';
+  if(selected){
+    const rowData=rows.find(r=>r.code===selected);
+    const items=(rowData?rowData.items:[]).slice().sort((a,b)=>(numVal(b.expFy)+numVal(b.expRemainForecast))-(numVal(a.expFy)+numVal(a.expRemainForecast)));
+    const showOfficer=selected==='HQ';
+    html+='<div class="section"><div class="sec-hdr"><span class="sec-title">'+esc(rowData?rowData.name:selected)+' &mdash; Active Projects</span><span class="sec-sub">'+items.length+' project(s) &middot; sorted by Annual Expected Expenditure &darr;</span></div>';
+    if(items.length){
+      html+='<div class="tw"><table><thead><tr><th>#</th><th style="min-width:180px">Project Name</th>'+(showOfficer?'<th>Officer</th>':'')+'<th>Project Cost</th><th>Exp. Booked (till 31-Mar)</th><th>Exp. Remaining</th><th>Exp. Booked (Current FY)</th><th>Expected Exp. (Rem. FY)</th><th>Annual Expected Exp.</th></tr></thead><tbody>'
+        +items.map((p,i)=>{
+          const cost=numVal(p.cost),expCum=numVal(p.expCum),remaining=cost-expCum,expFy=numVal(p.expFy),forecast=numVal(p.expRemainForecast),annual=expFy+forecast;
+          return '<tr><td style="color:var(--muted);font-size:11px">'+(i+1)+'</td><td class="pname">'+esc(p.project)+(p.projectFull?'<div class="text-xs" style="color:var(--muted);font-weight:400;margin-top:2px" title="'+esc(p.projectFull)+'">'+esc(p.projectFull.length>60?p.projectFull.slice(0,60)+'…':p.projectFull)+'</div>':'')+'</td>'
+            +(showOfficer?'<td>'+av(p.officer)+'</td>':'')
+            +'<td class="cost">'+fmtAmt(cost)+'</td><td class="cost">'+fmtAmt(expCum)+'</td><td class="cost" style="'+(remaining<0?'color:var(--red);font-weight:600':'')+'">'+fmtAmt(remaining)+'</td><td class="cost">'+fmtAmt(expFy)+'</td><td class="cost">'+fmtAmt(forecast)+'</td><td class="cost" style="font-weight:700">'+fmtAmt(annual)+'</td></tr>';
+        }).join('')
+        +'</tbody></table></div>';
+    } else { html+='<div class="empty-state" style="padding:20px"><p>No active projects for this selection.</p></div>'; }
+    html+='</div>';
+  }
+  return html+'</div>';
+}
+/* ══════════════════════════════════════════
+   MODALS — projectFull on all tracks, cost-aware E-File stage dropdown
+   ══════════════════════════════════════════ */
+function getModalHTML(trackId,isEdit,item,defOfficer){
+  const isGM=currentUser==='GM'||currentUser==='ADMIN'; const track=TRACKS[trackId]||TRACKS.pipeline;
+  const canE=isEdit?canEdit(item.officer||''):true; const dis=canE?'':' disabled';
+  const officerLocked=currentIsArea;
+  const officerSelectedVal=officerLocked?currentUser:(item.officer||defOfficer||currentUser);
+  const officerDis=officerLocked?' disabled':((isGM||(!isEdit))?'':' disabled');
+  let html=`<span class="modal-handle"></span><h2>${isEdit?'Edit entry':'Add new entry'}</h2>
+    <div class="modal-track-tag modal-track-${trackId}" data-track="${trackId}">${track.icon} ${track.label}</div>
+    ${isEdit&&!canE?'<div class="ro-notice">&#9888; View only.</div>':''}
+    <div class="frow">`;
+  if(!isEdit){ html+=`<div class="fg"><label>Track</label><select id="m-type" onchange="switchTrackInModal(this.value,'${defOfficer}')">`+Object.values(TRACKS).map(t=>`<option value="${t.id}"${t.id===trackId?' selected':''}>${t.icon} ${t.label}</option>`).join('')+`</select></div>`; }
+  const legacyAreaSelected=AREAS.find(a=>a.code===officerSelectedVal);
+  html+=`<div class="fg"><label>Assigned officer</label><select id="m-officer"${officerDis}>`+
+    `<option value=""${!officerSelectedVal?' selected':''}>Unassigned</option>`+
+    OFFICERS.map(o=>`<option value="${o.code}"${o.code===officerSelectedVal?' selected':''}>${o.code} — ${o.name}</option>`).join('')+
+    (legacyAreaSelected?`<option value="${legacyAreaSelected.code}" selected>⚠ ${legacyAreaSelected.code} — ${legacyAreaSelected.name} (legacy area assignment — migrate to the Area dashboard)</option>`:'')+
+    `</select></div></div>`;
+  html+=`<div class="fg"><label>Project name (Short) *</label><input type="text" id="m-project" value="${esc(item.project||'')}" ${dis} placeholder="Short name for dashboard tables"></div>
+         <div class="fg"><label>Project name (Full)</label><textarea id="m-project-full" ${dis} placeholder="Full / official long-form project title (appears in exports and modal only, not in tables)">${esc(item.projectFull||'')}</textarea></div>
+         <div class="frow"><div class="fg"><label>Implementing Agency</label><input type="text" id="m-agency" value="${esc(item.agency||'')}" ${dis}></div>
+         <div class="fg"><label>VIP Reference</label><input type="text" id="m-vipref" list="vip-ref-list" placeholder="e.g. Hon'ble MP Ranchi" value="${esc(item.vipRef||'')}" ${dis}></div></div>
+         <datalist id="vip-ref-list">${getVipDignitaries().map(d=>`<option value="${esc(d.name)}">`).join('')}</datalist>`;
+  if(trackId==='active'){
+    html+=`
+      <div class="frow"><div class="fg"><label>Financial Year</label><input type="text" id="m-fin-year" value="${esc(item.finYear||'')}" ${dis}></div><div class="fg"><label>Date of Execution</label><input type="text" id="m-mou-exec" value="${esc(item.mouExec||'')}" ${dis}></div></div>
+      <div class="frow"><div class="fg"><label>Value (Rs Lakhs)</label><input type="number" step="0.01" id="m-cost" value="${esc(item.cost||'')}" ${dis}></div><div class="fg"><label>E-file No.</label><input type="text" id="m-efile-no" value="${esc(item.efileNo||'')}" ${dis}></div></div>
+      <div class="frow"><div class="fg"><label>Exp. Current Month</label><input type="text" id="m-exp-month" value="${esc(item.expMonth||'')}" ${dis}></div><div class="fg"><label>Exp. Current FY</label><input type="text" id="m-exp-fy" value="${esc(item.expFy||'')}" ${dis}></div></div>
+      <div class="frow"><div class="fg"><label>Cum. Expenditure (as on 31-Mar)</label><input type="text" id="m-exp-cum" value="${esc(item.expCum||'')}" ${dis}></div><div class="fg"><label>Expected Exp. (Remaining FY)</label><input type="number" step="0.01" id="m-exp-remain-forecast" value="${esc(item.expRemainForecast||'')}" ${dis} placeholder="Officer's forecast, ₹ Lakhs"></div></div>
+      <div class="frow"><div class="fg"><label>District</label><input type="text" id="m-district" value="${esc(item.district||'')}" ${dis}></div><div class="fg"></div></div>
+      <div class="frow"><div class="fg"><label>MoU From</label><input type="text" id="m-mou-start" value="${esc(item.mouStart||'')}" ${dis}></div><div class="fg"><label>MoU To</label><input type="text" id="m-mou-end" value="${esc(item.mouEnd||'')}" ${dis}></div></div>
+      <div class="frow"><div class="fg"><label>MoU Extended Upto</label><input type="text" id="m-mou-ext" value="${esc(item.mouExt||'')}" ${dis}></div><div class="fg"><label>Progress/Status</label><input type="text" id="m-prog-status" value="${esc(item.progStatus||'')}" ${dis}></div></div>
+      <div class="frow"><div class="fg"><label>Block</label><input type="text" id="m-block" value="${esc(item.block||'')}" ${dis}></div><div class="fg"><label>Panchayat</label><input type="text" id="m-panchayat" value="${esc(item.panchayat||'')}" ${dis}></div></div>
+      <div class="frow"><div class="fg"><label>Total Beneficiaries</label><input type="number" id="m-ben-total" value="${esc(item.totalBen||'')}" ${dis}></div><div class="fg"><label>SC Beneficiaries</label><input type="number" id="m-ben-sc" value="${esc(item.scBen||'')}" ${dis}></div></div>
+      <div class="frow"><div class="fg"><label>ST Beneficiaries</label><input type="number" id="m-ben-st" value="${esc(item.stBen||'')}" ${dis}></div><div class="fg"><label>OBC Beneficiaries</label><input type="number" id="m-ben-obc" value="${esc(item.obcBen||'')}" ${dis}></div></div>
+      <div class="frow"><div class="fg"><label>Item No. under Sch. VII</label><input type="text" id="m-sch-vii" value="${esc(item.schVii||'')}" ${dis}></div><div class="fg"><label>Project Duration (months)</label><input type="number" id="m-duration" value="${esc(item.durationMonths||'')}" ${dis}></div></div>
+      <div class="fg"><label>Within 25 KM?</label><select id="m-within-25km" ${dis}><option value="">—</option><option value="Yes"${item.within25km==='Yes'?' selected':''}>Yes</option><option value="No"${item.within25km==='No'?' selected':''}>No</option></select></div>
+      <div class="fg"><label>Abstract about the Project</label><textarea id="m-abstract" ${dis}>${esc(item.abstract||'')}</textarea></div>
+      <div class="fg"><label>Execution</label><textarea id="m-execution" ${dis}>${esc(item.execution||'')}</textarea></div>`;
+  } else {
+    const isEfile=trackId==='efile';
+    const stageOptions=isEfile?getEfileStages(item.cost):track.stages;
+    html+=`
+      <div class="frow"><div class="fg"><label>Cost (₹ Lakhs)</label><input type="number" id="m-cost" step="0.01" value="${esc(item.cost||'')}" ${dis} ${isEfile?`onchange="onEfileCostChange('${esc(item.cost||'')}')"`:''}></div><div class="fg"><label>Reference</label><input type="text" id="m-ref" value="${esc(item.ref||'')}" ${dis}></div></div>
+      <div class="frow"><div class="fg"><label>AP / Non-AP</label><select id="m-apflag" ${dis}><option value="">—</option><option value="AP"${item.apFlag==='AP'?' selected':''}>AP</option><option value="Non-AP"${item.apFlag==='Non-AP'?' selected':''}>Non-AP</option></select></div>${isEfile?`<div class="fg"><label>E-file No.</label><input type="text" id="m-efile-no" value="${esc(item.efileNo||'')}" ${dis}></div>`:''}</div>
+      ${isEfile?`<p class="band-chip">🏷 ${esc(getEfileBandLabel(item.cost))}</p>`:''}
+      <div class="frow"><div class="fg"><label>Stage</label><select id="m-stage" ${dis} data-orig-cost="${esc(item.cost||'')}">${stageOptions.map(s=>`<option value="${s.id}"${s.id===item.stage?' selected':''}>${s.id}. ${s.label}</option>`).join('')}</select></div><div class="fg"><label>Stage note</label><input type="text" id="m-snote" value="${esc(item.stageNote||'')}" ${dis}></div></div>
+      <div id="m-stage-flow-wrap">${stageFlow(trackId,item.stage||1,item.cost)}</div>
+      ${item.stale?`<div class="ro-notice">&#9888; This item's cost band changed — stage was reset to 1. Please re-verify and update the current stage.</div>`:''}
+      <div class="fg" style="margin-top:10px"><label>On hold?</label><div class="toggle-row"><label class="toggle"><input type="checkbox" id="m-hold" ${item.hold?'checked':''} ${dis}><span class="tslider"></span></label><span>Mark as on hold</span></div></div>`;
+  }
+  html+=`<div class="fg"><label>Remarks</label><textarea id="m-remark" ${dis}>${esc(item.remark||'')}</textarea></div>
+    <div class="modal-actions">${(isEdit&&canE)?`<button class="btn btn-del" onclick="delItem('${item.id}','${trackId}')">Delete</button>`:''}<button class="btn btn-ghost" onclick="closeModal()">${isEdit?'Close':'Cancel'}</button>${canE?`<button class="btn btn-acc" onclick="${isEdit?`saveEdit('${item.id}','${trackId}')`:'saveNew()'}">Save</button>`:''}</div>`;
+  return html;
+}
+function openAdd(defOfficer,trackId){ if(currentIsArea) defOfficer=currentUser; document.getElementById('modal-content').innerHTML=getModalHTML(trackId,false,{},defOfficer); document.getElementById('modal-bg').classList.add('open'); }
+function openEdit(id,type){ const arr=getDBArray(type); const item=arr.find(p=>String(p.id)===String(id)); if(!item) return; document.getElementById('modal-content').innerHTML=getModalHTML(type,true,item,null); document.getElementById('modal-bg').classList.add('open'); }
+function switchTrackInModal(trackId,defOfficer){ openAdd(defOfficer,trackId); }
+function onEfileCostChange(origCost){
+  const costEl=document.getElementById('m-cost'); const stageEl=document.getElementById('m-stage'); const flowWrap=document.getElementById('m-stage-flow-wrap'); const bandChipEl=document.querySelector('.band-chip');
+  if(!costEl||!stageEl) return;
+  const newCost=costEl.value;
+  const sameBand=getEfileBandKey(origCost)===getEfileBandKey(newCost);
+  const stages=getEfileStages(newCost);
+  const keepStage=sameBand?(parseInt(stageEl.value)||1):1;
+  stageEl.innerHTML=stages.map(s=>`<option value="${s.id}"${s.id===keepStage?' selected':''}>${s.id}. ${s.label}</option>`).join('');
+  stageEl.setAttribute('data-orig-cost',origCost);
+  if(flowWrap) flowWrap.innerHTML=stageFlow('efile',keepStage,newCost);
+  if(bandChipEl) bandChipEl.textContent='🏷 '+getEfileBandLabel(newCost)+(sameBand?'':' — Band changed: stage will reset to 1 on save.');
+}
+function saveNew(){
+  const project=trimVal('m-project'); if(!project){ toast('Project name is required.',true); return; }
+  const typeEl=document.getElementById('m-type');
+  let resolvedType=typeEl?typeEl.value:'pipeline';
+  const modalTag=document.querySelector('.modal-track-tag');
+  if(!typeEl&&modalTag){
+    const cls=modalTag.className;
+    if(cls.includes('modal-track-active')) resolvedType='active';
+    else if(cls.includes('modal-track-efile')) resolvedType='efile';
+    else if(cls.includes('modal-track-mou')) resolvedType='mou';
+    else if(cls.includes('modal-track-pipe')) resolvedType='pipeline';
+    else resolvedType=modalTag.getAttribute('data-track')||'pipeline';
+  }
+  if(typeEl) resolvedType=typeEl.value;
+  const item={
+    id:genId(resolvedType[0]),type:resolvedType,
+    officer:currentIsArea?currentUser:val('m-officer'),
+    project:project,projectFull:trimVal('m-project-full'),
+    agency:trimVal('m-agency'),cost:val('m-cost'),remark:trimVal('m-remark'),vipRef:trimVal('m-vipref')
+  };
+  if(resolvedType==='active'){ item.finYear=trimVal('m-fin-year'); item.mouExec=trimVal('m-mou-exec'); item.efileNo=trimVal('m-efile-no'); item.expMonth=trimVal('m-exp-month'); item.expFy=trimVal('m-exp-fy'); item.expCum=trimVal('m-exp-cum'); item.expRemainForecast=trimVal('m-exp-remain-forecast'); item.mouStart=trimVal('m-mou-start'); item.mouEnd=trimVal('m-mou-end'); item.mouExt=trimVal('m-mou-ext'); item.district=trimVal('m-district'); item.progStatus=trimVal('m-prog-status');
+    item.block=trimVal('m-block'); item.panchayat=trimVal('m-panchayat'); item.totalBen=trimVal('m-ben-total'); item.scBen=trimVal('m-ben-sc'); item.stBen=trimVal('m-ben-st'); item.obcBen=trimVal('m-ben-obc'); item.schVii=trimVal('m-sch-vii'); item.durationMonths=trimVal('m-duration'); item.within25km=val('m-within-25km'); item.abstract=trimVal('m-abstract'); item.execution=trimVal('m-execution');
+  } else { item.ref=trimVal('m-ref'); item.apFlag=val('m-apflag'); item.efileNo=resolvedType==='efile'?trimVal('m-efile-no'):''; item.stage=parseInt(val('m-stage'))||1; item.stageNote=trimVal('m-snote'); item.hold=checked('m-hold'); item.stale=false; }
+  getDBArray(resolvedType).push(item); persistRow(item); closeModal();
+  if(currentIsArea) showPage(currentUser); else if(currentPage==='vip') showPage('vip'); else showPage(item.officer||currentPage);
+}
+function saveEdit(id,type){
+  const arr=getDBArray(type); const i=arr.findIndex(p=>String(p.id)===String(id)); if(i<0) return;
+  arr[i]={...arr[i],project:trimVal('m-project'),projectFull:trimVal('m-project-full'),agency:trimVal('m-agency'),cost:val('m-cost'),officer:currentIsArea?currentUser:val('m-officer'),remark:trimVal('m-remark'),vipRef:trimVal('m-vipref')};
+  if(type==='active'){ arr[i].finYear=trimVal('m-fin-year'); arr[i].mouExec=trimVal('m-mou-exec'); arr[i].efileNo=trimVal('m-efile-no'); arr[i].expMonth=trimVal('m-exp-month'); arr[i].expFy=trimVal('m-exp-fy'); arr[i].expCum=trimVal('m-exp-cum'); arr[i].expRemainForecast=trimVal('m-exp-remain-forecast'); arr[i].mouStart=trimVal('m-mou-start'); arr[i].mouEnd=trimVal('m-mou-end'); arr[i].mouExt=trimVal('m-mou-ext'); arr[i].district=trimVal('m-district'); arr[i].progStatus=trimVal('m-prog-status');
+    arr[i].block=trimVal('m-block'); arr[i].panchayat=trimVal('m-panchayat'); arr[i].totalBen=trimVal('m-ben-total'); arr[i].scBen=trimVal('m-ben-sc'); arr[i].stBen=trimVal('m-ben-st'); arr[i].obcBen=trimVal('m-ben-obc'); arr[i].schVii=trimVal('m-sch-vii'); arr[i].durationMonths=trimVal('m-duration'); arr[i].within25km=val('m-within-25km'); arr[i].abstract=trimVal('m-abstract'); arr[i].execution=trimVal('m-execution');
+  } else {
+    arr[i].ref=trimVal('m-ref'); arr[i].apFlag=val('m-apflag'); arr[i].efileNo=type==='efile'?trimVal('m-efile-no'):(arr[i].efileNo||''); arr[i].stageNote=trimVal('m-snote'); arr[i].hold=checked('m-hold');
+    if(type==='efile'){ const stageEl=document.getElementById('m-stage'); const origCost=stageEl?stageEl.getAttribute('data-orig-cost'):arr[i].cost; const bandChanged=getEfileBandKey(origCost)!==getEfileBandKey(arr[i].cost); if(bandChanged){ arr[i].stage=1; arr[i].stale=true; toast('Cost band changed — stage reset to 1 for re-verification.',true); } else { arr[i].stage=parseInt(val('m-stage'))||1; arr[i].stale=false; }
+    } else { arr[i].stage=parseInt(val('m-stage'))||1; arr[i].stale=false; }
+  }
+  persistRow(arr[i]); closeModal(); showPage(currentPage);
+}
+async function delItem(id,type){ if(window._isDeleting) return; if(!confirm('Delete this entry permanently?')) return; window._isDeleting=true; try { await removeRow(id,type); closeModal(); toast('Entry deleted'); showPage(currentPage); } finally { window._isDeleting=false; } }
+function closeModal(){ document.getElementById('modal-bg').classList.remove('open'); }
+function closeMBg(e){ if(e.target===document.getElementById('modal-bg')) closeModal(); }
+/* ══════════════════════════════════════════
+   MOVEMENT — cost-aware quickAdvance
+   ══════════════════════════════════════════ */
+function quickAdvance(id,type){
+  const arr=getDBArray(type); const idx=arr.findIndex(p=>String(p.id)===String(id)); if(idx<0) return;
+  const stages=type==='efile'?getEfileStages(arr[idx].cost):(TRACKS[type].stages||[]);
+  const maxStages=stages.length;
+  if(arr[idx].stage<maxStages){ arr[idx].stage++; if(type==='efile') arr[idx].stale=false; persistRow(arr[idx]); toast('Advanced to: '+getStageLabel(type,arr[idx].stage,arr[idx].cost)); } showPage(currentPage);
+}
+function quickToggleHold(id,type,holdState){ const arr=getDBArray(type); const idx=arr.findIndex(p=>String(p.id)===String(id)); if(idx<0) return; arr[idx].hold=holdState; persistRow(arr[idx]); toast(holdState?'Marked as on hold':'Hold removed'); showPage(currentPage); }
+async function promoteToNextTrack(id,type){
+  if(window._isTransferring) return;
+  const srcArr=getDBArray(type); const idx=srcArr.findIndex(p=>String(p.id)===String(id)); if(idx<0) return;
+  const srcItem=srcArr[idx]; const nextTypeStr=TRACKS[type].id==='pipeline'?'efile':TRACKS[type].id==='efile'?'mou':TRACKS[type].id==='mou'?'active':null; if(!nextTypeStr) return;
+  if(!confirm('Move "'+srcItem.project+'" to '+TRACKS[nextTypeStr].label+'? This will transfer it out of the current track.')) return;
+  window._isTransferring=true; showSaving(true,'Transferring...');
+  const newId=genId(nextTypeStr[0]);
+  let newItem={id:newId,type:nextTypeStr,officer:srcItem.officer,project:srcItem.project,projectFull:srcItem.projectFull||'',agency:srcItem.agency,cost:srcItem.cost,remark:'Promoted from '+TRACKS[type].label,vipRef:srcItem.vipRef||''};
+  if(nextTypeStr==='active'){ newItem.mouStart=''; newItem.mouEnd=''; newItem.efileNo=''; newItem.finYear=''; newItem.mouExec=''; newItem.expMonth=''; newItem.expFy=''; newItem.expCum=''; newItem.expRemainForecast=''; newItem.mouExt=''; newItem.district=''; newItem.progStatus='';
+  } else { newItem.ref=srcItem.ref||''; newItem.apFlag=srcItem.apFlag||''; newItem.stage=1; newItem.stageNote=''; newItem.hold=false; newItem.stale=false; if(nextTypeStr==='efile') newItem.efileNo=prompt('Enter E-file number (optional):','')||''; }
+  try{ getDBArray(nextTypeStr).push(newItem); await persistRow(newItem); if(DB.reportFlags[srcItem.id]){ const oldFlag=DB.reportFlags[srcItem.id]; DB.reportFlags[newId]={project_id:newId,project_name:newItem.project,officer:newItem.officer,track:nextTypeStr,dir_hr:oldFlag.dir_hr,dir_fin:oldFlag.dir_fin,cmd:oldFlag.cmd,most_followed:oldFlag.most_followed}; await saveFlag(newId); await sbFetch('reporting_flags?project_id=eq.'+encodeURIComponent(srcItem.id),{method:'DELETE',rawRes:true}); delete DB.reportFlags[srcItem.id]; } await removeRow(srcItem.id,type); toast('Moved to '+TRACKS[nextTypeStr].label+' ✓'); }catch(e){ toast("Database sync issue. Reloading...",true); await loadData(true); }finally{ window._isTransferring=false; showSaving(false); showPage(currentPage); }
+}
+
+/* ══════════════════════════════════════════
+   REPORTING
+   ══════════════════════════════════════════ */
+function getFlag(item){ if(!DB.reportFlags[item.id]){ DB.reportFlags[item.id]={project_id:item.id,project_name:item.project,officer:item.officer,track:item.type,dir_hr:false,dir_fin:false,cmd:false,most_followed:false}; } return DB.reportFlags[item.id]; }
+async function saveFlag(projectId){ const flag=DB.reportFlags[projectId]; if(!flag) return; try{ const res=await sbFetch('reporting_flags',{method:'POST',prefer:'resolution=merge-duplicates,return=minimal',body:JSON.stringify({project_id:flag.project_id,project_name:flag.project_name,officer:flag.officer,track:flag.track,dir_hr:!!flag.dir_hr,dir_fin:!!flag.dir_fin,cmd:!!flag.cmd,most_followed:!!flag.most_followed}),rawRes:true}); if(res.status!==200&&res.status!==201&&res.status!==204) throw new Error('HTTP '+res.status); }catch(e){ toast('Could not save reporting flag: '+e.message,true); } }
+function cbFlag(el){ const pid=el.getAttribute('data-pid'); const field=el.getAttribute('data-field'); if(!pid||!field) return; if(!DB.reportFlags[pid]){ const allItems=[...DB.pipeline,...DB.efiles,...DB.mous,...DB.active]; const p=allItems.find(x=>String(x.id)===String(pid)); if(p) getFlag(p); else DB.reportFlags[pid]={project_id:pid,project_name:'',officer:'',track:'',dir_hr:false,dir_fin:false,cmd:false,most_followed:false}; } DB.reportFlags[pid][field]=el.checked; const row=document.getElementById('rep-row-'+pid); if(row) row.classList.add('rep-saving'); saveFlag(pid).finally(()=>{ const r2=document.getElementById('rep-row-'+pid); if(r2) r2.classList.remove('rep-saving'); renderNav(); }); }
+function renderReportingPage(){
+  const officerCodes=new Set(OFFICERS.map(o=>o.code));
+  const allItems=[...DB.pipeline.map(p=>({...p,trackLabel:TRACKS.pipeline.label,trackIcon:TRACKS.pipeline.icon})),...DB.efiles.map(p=>({...p,trackLabel:TRACKS.efile.label,trackIcon:TRACKS.efile.icon})),...DB.mous.map(p=>({...p,trackLabel:TRACKS.mou.label,trackIcon:TRACKS.mou.icon})),...DB.active.map(p=>({...p,trackLabel:TRACKS.active.label,trackIcon:TRACKS.active.icon}))].filter(p=>!p.hold).filter(p=>!p.officer||officerCodes.has(p.officer));
+  allItems.forEach(p=>getFlag(p));
+  const fTrack=window._repFilterTrack||''; const fOfficer=window._repFilterOfficer||''; const fSearch=(window._repFilterSearch||'').toLowerCase(); const fFlagged=window._repShowFlagged||false; const fVip=window._repFilterVip||'';
+  let filtered=allItems.filter(p=>{ if(fTrack&&p.type!==fTrack) return false; if(fOfficer&&p.officer!==fOfficer) return false; if(fSearch&&!p.project.toLowerCase().includes(fSearch)) return false; if(fVip&&p.vipRef!==fVip) return false; if(fFlagged){ const f=DB.reportFlags[p.id]; if(!f||(!f.dir_hr&&!f.dir_fin&&!f.cmd&&!f.most_followed)) return false; } return true; });
+  const hrCount=Object.values(DB.reportFlags).filter(f=>f.dir_hr).length; const finCount=Object.values(DB.reportFlags).filter(f=>f.dir_fin).length; const cmdCount=Object.values(DB.reportFlags).filter(f=>f.cmd).length; const mfCount=Object.values(DB.reportFlags).filter(f=>f.most_followed).length;
+  const vipNames=getVipDignitaries().map(d=>d.name);
+  return '<div class="page active"><div class="page-header"><div><h1>📋 Reporting Monitor</h1><p>HQ projects only &middot; Flag for Director (HR) Sir &middot; Director (Finance) Sir &middot; CMD Sir &middot; Most Followed</p></div><div class="page-header-actions"><button class="btn" onclick="exportReportingXLSX()" style="background:#1e7e34;color:#fff;border-color:#155d27;font-weight:700">&#8681; Download Excel</button></div></div><div class="stats-row"><div class="stat blu"><div class="lbl">Active Projects</div><div class="val">'+allItems.length+'</div></div><div class="stat" style="border-left:3px solid #1d4ed8"><div class="lbl">D(HR) Sir</div><div class="val">'+hrCount+'</div></div><div class="stat acc"><div class="lbl">D(F) Sir</div><div class="val">'+finCount+'</div></div><div class="stat" style="border-left:3px solid #9d174d"><div class="lbl">CMD Sir</div><div class="val">'+cmdCount+'</div></div><div class="stat" style="border-left:3px solid #6d28d9"><div class="lbl">Most Followed</div><div class="val">'+mfCount+'</div></div></div><div class="section"><div class="rep-filter-bar"><label>Track:</label><select onchange="window._repFilterTrack=this.value;showPage(\'reporting\')"><option value="">All tracks</option><option value="pipeline"'+(fTrack==='pipeline'?' selected':'')+'>📋 Pipeline</option><option value="efile"'+(fTrack==='efile'?' selected':'')+'>🗂️ E-Files</option><option value="mou"'+(fTrack==='mou'?' selected':'')+'>📝 MoU</option><option value="active"'+(fTrack==='active'?' selected':'')+'>🏗️ Active</option></select><label>Assigned to:</label><select onchange="window._repFilterOfficer=this.value;showPage(\'reporting\')"><option value="">All HQ officers</option>'+OFFICERS.map(o=>'<option value="'+o.code+'"'+(fOfficer===o.code?' selected':'')+'>'+esc(o.name)+'</option>').join('')+'</select><label>⭐ VIP:</label><select onchange="window._repFilterVip=this.value;showPage(\'reporting\')"><option value="">All VIPs</option>'+vipNames.map(n=>'<option value="'+esc(n)+'"'+(fVip===n?' selected':'')+'>'+esc(n)+'</option>').join('')+'</select><input type="text" placeholder="Search project…" value="'+esc(fSearch)+'" oninput="window._repFilterSearch=this.value;showPage(\'reporting\')" style="min-width:160px"><label style="display:flex;align-items:center;gap:5px;cursor:pointer"><input type="checkbox" '+(fFlagged?'checked':'')+' onchange="window._repShowFlagged=this.checked;showPage(\'reporting\')" style="cursor:pointer"> Flagged only</label><span style="margin-left:auto;font-size:12px;color:var(--muted)">Showing <strong>'+filtered.length+'</strong> of '+allItems.length+'</span></div><div class="rep-table-wrap"><table class="rep-table"><thead><tr><th class="rc-sno">S.No.</th><th class="rc-project">Project Name</th><th class="rc-value">Value (Lakhs)</th><th class="rc-officer">Assigned officer</th><th class="rc-track">Track</th><th class="rc-vip">VIP Ref.</th><th class="rc-flag"><span class="rep-flag rep-flag-hr">D(HR) Sir</span></th><th class="rc-flag"><span class="rep-flag rep-flag-fin">D(F) Sir</span></th><th class="rc-flag"><span class="rep-flag rep-flag-cmd">CMD Sir</span></th><th class="rc-flag"><span class="rep-flag" style="background:#ede9fe;color:#6d28d9">Most Followed</span></th></tr></thead><tbody>'+
+    (filtered.length===0?'<tr><td colspan="10" style="text-align:center;padding:30px;color:var(--muted)">No projects match filter.</td></tr>':filtered.map((p,i)=>{ const flag=getFlag(p); const offObj=getAssignee(p.officer); const offName=offObj?offObj.name:(p.officer||'—'); return '<tr id="rep-row-'+p.id+'"><td class="rc-sno" style="color:var(--muted);font-size:11px;text-align:center">'+(i+1)+'</td><td class="pname rc-project">'+esc(p.project)+'</td><td class="cost rc-value">'+fmtCost(p.cost)+'</td><td class="rc-officer"><div style="display:flex;align-items:center;gap:6px">'+av(p.officer)+'<span style="font-size:11px">'+esc(offName)+'</span></div></td><td class="rc-track"><span class="track-tag track-tag-'+p.type+'">'+p.trackIcon+' '+p.trackLabel+'</span></td><td class="rc-vip">'+(vipPill(p.vipRef)||'&mdash;')+'</td><td class="rc-flag" style="text-align:center;vertical-align:middle"><input type="checkbox" class="rep-cb" data-pid="'+p.id+'" data-field="dir_hr" '+(flag.dir_hr?'checked':'')+' onchange="cbFlag(this)"></td><td class="rc-flag" style="text-align:center;vertical-align:middle"><input type="checkbox" class="rep-cb" data-pid="'+p.id+'" data-field="dir_fin" '+(flag.dir_fin?'checked':'')+' onchange="cbFlag(this)"></td><td class="rc-flag" style="text-align:center;vertical-align:middle"><input type="checkbox" class="rep-cb" data-pid="'+p.id+'" data-field="cmd" '+(flag.cmd?'checked':'')+' onchange="cbFlag(this)"></td><td class="rc-flag" style="text-align:center;vertical-align:middle"><input type="checkbox" class="rep-cb" style="accent-color:#6d28d9" data-pid="'+p.id+'" data-field="most_followed" '+(flag.most_followed?'checked':'')+' onchange="cbFlag(this)"></td></tr>'; }).join(''))+'</tbody></table></div></div></div>';
+}
+/* ══════════════════════════════════════════
+   EXCEL EXPORT — projectFull column on all sheets, cost-aware stage for e-files
+   ══════════════════════════════════════════ */
+function withXLSX(cb){ if(window.XLSX){ cb(window.XLSX); return; } toast('Preparing Excel export…'); const s=document.createElement('script'); s.src='https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js'; s.onload=()=>cb(window.XLSX); s.onerror=()=>toast('Could not load Excel library.',true); document.head.appendChild(s); }
+function makeSheet(XLSX,heads,rows){ const data=[heads,...rows]; const ws=XLSX.utils.aoa_to_sheet(data); ws['!cols']=heads.map((h,ci)=>{ const max=data.reduce((m,r)=>Math.max(m,String(r[ci]||'').length),0); return {wch:Math.min(Math.max(max,h.length)+2,60)}; }); return ws; }
+function officerLabel(code){ if(!code) return 'Unassigned'; const o=getAssignee(code); return o?o.name+' ('+o.code+')':code; }
+const activeHeads=['S.No.','Financial Year','Date of Execution of MoU','Name of the Project','Project Name (Full)','Efile_No.','Value of the Project in Rs. lakhs','Implementing Agency','Expenditure in Current Month','Expenditure in Current FY','Cumulative Expenditure till date (as on 31-Mar)','Expected Expenditure (Remaining FY)','MoU From','MoU To','MoU Extended Upto','District','Block','Panchayat','Total Beneficiaries','SC Beneficiaries','ST Beneficiaries','OBC Beneficiaries','Item No. under Sch. VII','Project Duration (months)','Within 25 KM','Abstract about the Project','Execution','Dealing Officer','Progress/Status','VIP Reference','Remarks'];
+function toActiveRows(arr){ return arr.map((p,i)=>[i+1,p.finYear||'',p.mouExec||'',p.project||'',p.projectFull||'',p.efileNo||'',p.cost||'',p.agency||'',p.expMonth||'',p.expFy||'',p.expCum||'',p.expRemainForecast||'',p.mouStart||'',p.mouEnd||'',p.mouExt||'',p.district||'',p.block||'',p.panchayat||'',p.totalBen||'',p.scBen||'',p.stBen||'',p.obcBen||'',p.schVii||'',p.durationMonths||'',p.within25km||'',p.abstract||'',p.execution||'',officerLabel(p.officer),p.progStatus||'',p.vipRef||'',p.remark||'']); }
+function exportReportingXLSX(){
+  withXLSX(XLSX=>{
+    const officerCodes=new Set(OFFICERS.map(o=>o.code));
+    const allItems=[...DB.pipeline,...DB.efiles,...DB.mous,...DB.active].filter(p=>!p.hold).filter(p=>!p.officer||officerCodes.has(p.officer));
+    const heads=['S.No.','Project Name','Project Name (Full)','Agency','Cost / Value','E-File No.','Assigned officer','Current Stage/Status','VIP Reference','Remarks'];
+    function buildRows(field){ let rows=allItems.filter(p=>{ const f=DB.reportFlags[p.id]; return f&&f[field]; }); rows.sort((a,b)=>{ const fA=DB.reportFlags[a.id]?.most_followed?1:0; const fB=DB.reportFlags[b.id]?.most_followed?1:0; return fB-fA; }); return rows.map((p,i)=>[i+1,p.project||'',p.projectFull||'',p.agency||'',p.cost?'₹'+p.cost+'L':'',p.efileNo||'',officerLabel(p.officer),p.type==='active'?(p.progStatus||'Active'):getStageLabel(p.type,p.stage,p.cost),p.vipRef||'',p.remark||'']); }
+    const wb=XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb,makeSheet(XLSX,heads,buildRows('dir_hr')),'Director (HR) Sir');
+    XLSX.utils.book_append_sheet(wb,makeSheet(XLSX,heads,buildRows('dir_fin')),'Director (Finance) Sir');
+    XLSX.utils.book_append_sheet(wb,makeSheet(XLSX,heads,buildRows('cmd')),'CMD Sir');
+    XLSX.utils.book_append_sheet(wb,makeSheet(XLSX,heads,buildRows('most_followed')),'Most Followed');
+    XLSX.writeFile(wb,'CCL_CSR_Tracking_Report_'+new Date().toISOString().slice(0,10)+'.xlsx');
+  });
+}
+function exportOfficerXLSX(code){
+  withXLSX(XLSX=>{
+    const {pipeline,efiles,mous,active}=getOP(code); const wb=XLSX.utils.book_new();
+    const pipeH=['Project','Project Name (Full)','Agency','Reference','Cost (Lakhs)','AP Flag','Stage','Stage Note','On Hold','VIP Reference','Remark'];
+    const efileH=['Project','Project Name (Full)','Agency','Reference','E-File No.','Cost (Lakhs)','Cost Band','AP Flag','Stage','Stage Note','On Hold','VIP Reference','Remark'];
+    const mouH=['Project','Project Name (Full)','Agency','Reference','Cost (Lakhs)','AP Flag','Stage','Stage Note','On Hold','VIP Reference','Remark'];
+    const toBaseRows=(arr,trackId)=>arr.map(p=>[p.project||'',p.projectFull||'',p.agency||'',p.ref||'',p.cost||'',p.apFlag||'',getStageLabel(trackId,p.stage,p.cost),p.stageNote||'',p.hold?'Yes':'No',p.vipRef||'',p.remark||'']);
+    const toEfileRows=arr=>arr.map(p=>[p.project||'',p.projectFull||'',p.agency||'',p.ref||'',p.efileNo||'',p.cost||'','Band '+getEfileBandKey(p.cost),p.apFlag||'',getStageLabel('efile',p.stage,p.cost),p.stageNote||'',p.hold?'Yes':'No',p.vipRef||'',p.remark||'']);
+    XLSX.utils.book_append_sheet(wb,makeSheet(XLSX,pipeH,toBaseRows(pipeline,'pipeline')),'Pipeline');
+    XLSX.utils.book_append_sheet(wb,makeSheet(XLSX,efileH,toEfileRows(efiles)),'E-Files');
+    XLSX.utils.book_append_sheet(wb,makeSheet(XLSX,mouH,toBaseRows(mous,'mou')),'MoU');
+    XLSX.utils.book_append_sheet(wb,makeSheet(XLSX,activeHeads,toActiveRows(active)),'Active Projects');
+    XLSX.writeFile(wb,'CCL_CSR_'+code+'_'+new Date().toISOString().slice(0,10)+'.xlsx');
+  });
+}
+function exportAllXLSX(){
+  withXLSX(XLSX=>{
+    const wb=XLSX.utils.book_new();
+    const pipeH=['Officer / Area','Project','Project Name (Full)','Agency','Reference','Cost (Lakhs)','AP Flag','Stage','Stage Note','On Hold','VIP Reference','Remark'];
+    const efileH=['Officer / Area','Project','Project Name (Full)','Agency','Reference','E-File No.','Cost (Lakhs)','Cost Band','AP Flag','Stage','Stage Note','On Hold','VIP Reference','Remark'];
+    const mouH=['Officer / Area','Project','Project Name (Full)','Agency','Reference','Cost (Lakhs)','AP Flag','Stage','Stage Note','On Hold','VIP Reference','Remark'];
+    const toPipeRows=arr=>arr.map(p=>[officerLabel(p.officer),p.project||'',p.projectFull||'',p.agency||'',p.ref||'',p.cost||'',p.apFlag||'',getStageLabel('pipeline',p.stage,p.cost),p.stageNote||'',p.hold?'Yes':'No',p.vipRef||'',p.remark||'']);
+    const toEfileRows=arr=>arr.map(p=>[officerLabel(p.officer),p.project||'',p.projectFull||'',p.agency||'',p.ref||'',p.efileNo||'',p.cost||'','Band '+getEfileBandKey(p.cost),p.apFlag||'',getStageLabel('efile',p.stage,p.cost),p.stageNote||'',p.hold?'Yes':'No',p.vipRef||'',p.remark||'']);
+    const toMouRows=arr=>arr.map(p=>[officerLabel(p.officer),p.project||'',p.projectFull||'',p.agency||'',p.ref||'',p.cost||'',p.apFlag||'',getStageLabel('mou',p.stage,p.cost),p.stageNote||'',p.hold?'Yes':'No',p.vipRef||'',p.remark||'']);
+    XLSX.utils.book_append_sheet(wb,makeSheet(XLSX,pipeH,toPipeRows(DB.pipeline)),'Pipeline');
+    XLSX.utils.book_append_sheet(wb,makeSheet(XLSX,efileH,toEfileRows(DB.efiles)),'E-Files');
+    XLSX.utils.book_append_sheet(wb,makeSheet(XLSX,mouH,toMouRows(DB.mous)),'MoU');
+    XLSX.utils.book_append_sheet(wb,makeSheet(XLSX,activeHeads,toActiveRows(DB.active)),'Active Projects');
+    XLSX.writeFile(wb,'CCL_CSR_All_Officers_'+new Date().toISOString().slice(0,10)+'.xlsx');
+  });
+}
+function exportVipXLSX(){
+  withXLSX(XLSX=>{
+    const allItems=[...DB.pipeline,...DB.efiles,...DB.mous,...DB.active].filter(p=>p.vipRef);
+    const wb=XLSX.utils.book_new();
+    const heads=['VIP Reference','Track','Project','Project Name (Full)','Agency','Officer','Cost (Lakhs)','Stage/Status','Remark'];
+    const rows=allItems.map(p=>[p.vipRef||'',TRACKS[p.type].label,p.project||'',p.projectFull||'',p.agency||'',officerLabel(p.officer),p.cost||'',p.type==='active'?(p.progStatus||'Active'):getStageLabel(p.type,p.stage,p.cost),p.remark||'']);
+    rows.sort((a,b)=>a[0].localeCompare(b[0]));
+    XLSX.utils.book_append_sheet(wb,makeSheet(XLSX,heads,rows),'VIP Projects');
+    XLSX.writeFile(wb,'CCL_CSR_VIP_Projects_'+new Date().toISOString().slice(0,10)+'.xlsx');
+  });
+}
+
+document.addEventListener('DOMContentLoaded',()=>{ tryRestoreSession(); });
+</script>
+</body>
+</html>
