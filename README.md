@@ -1,80 +1,57 @@
-\# CCL CSR Monitor
+# CCL CSR Monitor
 
+## Open-Source CSR Project Monitoring Dashboard
 
+> A lightweight web-based application for structured monitoring of CSR projects across their administrative and implementation lifecycle.
 
-\## Open-Source CSR Project Monitoring Dashboard
+---
 
+## 🚀 Live Demo
 
+**[Open CCL CSR Monitor Demo](https://chandaniifm.github.io/CCL_CSR_Monitor_OSS/)**
 
-CCL CSR Monitor is a lightweight web-based project monitoring application designed to demonstrate structured tracking of CSR projects across their administrative and implementation lifecycle.
+The live demonstration is hosted using GitHub Pages.
 
+The demo version is a sanitized reference implementation and is completely separated from production systems and production datasets.
 
+---
 
-The application brings project pipeline monitoring, administrative workflows, implementation tracking, expenditure monitoring and reporting into a single interface.
+## 📌 About the Project
 
+CSR projects typically move through multiple administrative and implementation stages involving officers, approvals, implementing agencies, financial processes and field locations.
 
+CCL CSR Monitor demonstrates how these activities can be brought together into a single structured monitoring interface.
 
-> \*\*OSS Demo Version\*\*
+The application is designed around the practical workflow of a large public-sector organization and focuses on improving visibility, follow-up and management oversight.
 
->
+---
 
-> This repository contains a sanitized demonstration/reference implementation.
-
-> It does not contain production credentials, production database access or production datasets.
-
-
-
-\---
-
-
-
-\## Purpose
-
-
-
-CSR projects typically pass through multiple administrative and implementation stages involving different officers, approvals, agencies and field locations.
-
-
-
-CCL CSR Monitor demonstrates how these stages can be brought into a single structured monitoring interface.
-
-
+## 🎯 Purpose
 
 The system is designed to support:
 
+- Project visibility
+- Stage-wise monitoring
+- Administrative follow-up
+- Accountability
+- Expenditure tracking
+- Management reporting
+- Management oversight
+- Area-level monitoring
 
+The objective is not simply to display project data, but to provide a structured view of where a project stands, what action is pending and what requires attention.
 
-\- Project visibility
+---
 
-\- Stage-wise monitoring
-
-\- Administrative follow-up
-
-\- Accountability
-
-\- Expenditure tracking
-
-\- Reporting
-
-\- Management oversight
-
-\- Area-level monitoring
-
-
-
-\---
-
-
-
-\## Project Lifecycle
-
-
+## 🔄 Project Lifecycle
 
 The application organizes the project journey into four principal tracks:
 
-
-
 ```text
-
-Pipeline Proposals → E-Files → MoU → Active Projects
-
+Pipeline Proposals
+        ↓
+     E-Files
+        ↓
+       MoU
+        ↓
+ Active Projects
